@@ -57,8 +57,8 @@ ROOT_URLCONF = 'Estorem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'frontend/build'),
-                 os.path.join(BASE_DIR,'inventory-manager/build')],
+        'DIRS': [os.path.join(BASE_DIR,'Admin-Dashboard/build')
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,4 +126,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'frontend/build/static'),os.path.join(BASE_DIR,'inventory-manager/build/static')]
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'Admin-Dashboard/build/static')]

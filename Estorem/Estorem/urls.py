@@ -20,7 +20,7 @@ from adminl import views
 
 urlpatterns = [
     path('',views.index,name="admindb"),
-    path('invm',views.invm,name="inventory-manager"),
+    # path('invm',views.invm,name="inventory-manager"),
     path('admin/', admin.site.urls),
 ]
 

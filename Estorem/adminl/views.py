@@ -5,11 +5,11 @@ from .models import *
 
 def index(request):
     # products= Product.obj.all
-    return render(request,'adminl.html')
+    return render(request,'index.html')
 # ,{'products':products})
 
-def invm(request):
-    return render(request,'inventm.html')
+# def invm(request):
+#     return render(request,'inventm.html')
 
 # def add_prod(request):
 #     form =Prodform
