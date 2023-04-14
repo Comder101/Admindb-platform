@@ -15,7 +15,6 @@ from .models import FinManager
 
 
 class ProductsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Product
         fields = '__all__'
@@ -54,3 +53,14 @@ class InvmanSerializer(serializers.ModelSerializer):
     class Meta:
         model = InterruptedError
         fields = '__all__'
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InterruptedError
+        fields = '__all__'
+
+class FinmanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InterruptedError
+        fields = '__all__'
+

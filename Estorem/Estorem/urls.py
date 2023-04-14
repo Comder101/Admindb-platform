@@ -24,5 +24,33 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/customer/$', views.custm_list),
     re_path(r'^api/customer/([0-9])$', views.custm_detail),
+
+    re_path(r'^api/product/$', views.prod_list),
+    re_path(r'^api/product/([0-9])$', views.prod_detail),
+
+    re_path(r'^api/category/$', views.categ_list),
+    re_path(r'^api/category/([0-9])$', views.categ_detail),
+
+    re_path(r'^api/subcategory/$', views.subcateg_list),
+    re_path(r'^api/subcategory/([0-9])$', views.subcateg_detail),
+
+    re_path(r'^api/brand/$', views.brand_list),
+    re_path(r'^api/brand/([0-9])$', views.brand_detail),
+
+    re_path(r'^api/delivpar/$', views.deliv_list),
+    re_path(r'^api/delivpar/([0-9])$', views.deliv_detail),
+
+    re_path(r'^api/invman/$', views.invm_list),
+    re_path(r'^api/invman/([0-9])$', views.invm_detail),
+
+    re_path(r'^api/finman/$', views.finman_list),
+    re_path(r'^api/finman/([0-9])$', views.finman_detail),
+
+    re_path(r'^api/vendor/$', views.vendor_list),
+    re_path(r'^api/vendor/([0-9])$', views.vendor_detail),
+
+    re_path(r'^api/uom/$', views.uom_list),
+    re_path(r'^api/uom/([0-9])$', views.uom_detail),
+
 ]
 
