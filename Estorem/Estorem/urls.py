@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from adminl import views
 
 
@@ -22,5 +22,7 @@ urlpatterns = [
     path('',views.index,name="admindb"),
     # path('invm',views.invm,name="inventory-manager"),
     path('admin/', admin.site.urls),
+    re_path(r'^api/customer/$', views.custm_list),
+    re_path(r'^api/customer/([0-9])$', views.custm_detail),
 ]
 
