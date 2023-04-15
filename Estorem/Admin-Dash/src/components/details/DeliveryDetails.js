@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./Orders.css";
 import Modal from "../Modal";
 import EditDeliveryAgent from "../forms/EditDeliveryAgent";
 import ViewSingleRole from "../viewsingle/ViewSingleRole";
+import { useNavigate } from "react-router-dom";
 const info = [
   {
     id: "12345",
@@ -56,6 +57,42 @@ const obj = {
 
 const DeliveryDetails = () => {
 
+
+  const navigate = useNavigate();
+
+  // AllDeliveryAgents Array
+  const [AllDeliveryAgents, setAllDeliveryAgents] = useState([
+    {
+      firstname: 'Rohannnn',
+      lastname: 'Jadhav',
+      email: 'rohan@gmail.com',
+      contact: '11111111111',
+      agentimage: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202212/rohit_sharma-sixteen_nine.png?size=948:533',
+      city: 'georgia',
+      address: 'Cecilia Chapman 711-2880 Nulla St.Mankato Mississippi 96522(257) 563-7401',
+      pin: '415506'
+    }
+  ]);
+
+
+  // getdeliveryagents api
+  const getCustomers = async () => {
+    const response = await fetch(`http://127.0.0.1:8000/api/deliveryagent/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const json = await response.json();
+    // setAllCustomers(json);
+  }
+
+
+
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
 
   return (
     <>

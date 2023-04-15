@@ -5,50 +5,7 @@ import ViewSingleRole from "../viewsingle/ViewSingleRole";
 import EditCustomer from "../forms/EditCustomer";
 import { useNavigate } from "react-router-dom";
 
-// const info = [
-//   {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   }, {
-//     id: "12345",
-//     Name: "Aditya Pande",
-//   },
 
-// ];
-
-
-
-const obj = {
-  firstname: 'Rohan',
-  lastname: 'Jadhav',
-  email: 'rohan@gmail.com',
-  contact: '11111111111',
-  agentimage: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202212/rohit_sharma-sixteen_nine.png?size=948:533',
-  city: 'georgia',
-  address: 'Cecilia Chapman 711-2880 Nulla St.Mankato Mississippi 96522(257) 563-7401',
-  state: 'Mississippi'
-}
 
 const CustomerDetails = () => {
 
