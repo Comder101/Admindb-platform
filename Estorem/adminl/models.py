@@ -15,7 +15,7 @@ class Category(models.Model):
     
 
 class SubCategory(models.Model):
-    name= models.CharField(max_length=50)
+    subcategory= models.CharField(max_length=50)
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
 
     @staticmethod
@@ -26,11 +26,15 @@ class SubCategory(models.Model):
         return self.name
     
 class Customer(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField (max_length=50)
-    phone = models.CharField(max_length=10)
-    email=models.EmailField()
-    password = models.CharField(max_length=100)
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
+    pin = models.CharField(max_length=10,default='000000')
+    
 
     #to save the data
     def register(self):
@@ -44,35 +48,30 @@ class Uom(models.Model):
     
 class Vendor(models.Model):
  
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField (max_length=50)
-    phone = models.CharField(max_length=10)
-    email=models.EmailField()
-    city = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='uploads/vendors/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
     state = models.CharField(max_length=50)
     
-
-    address= models.CharField(max_length=250, default='', blank=True, null= True)
-    image= models.ImageField(upload_to='uploads/vendors/')
-
-
     #to save the data
     def register(self):
         self.save()
 
 class DelivPart(models.Model):
  
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField (max_length=50)
-    phone = models.CharField(max_length=10)
-    email=models.EmailField()
-    city = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='uploads/delivpar/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
     state = models.CharField(max_length=50)
     
-
-    address= models.CharField(max_length=250, default='', blank=True, null= True)
-    image= models.ImageField(upload_to='uploads/delivpar')
-
 
     #to save the data
     def register(self):
@@ -80,16 +79,15 @@ class DelivPart(models.Model):
 
 class FinManager(models.Model):
  
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField (max_length=50)
-    phone = models.CharField(max_length=10)
-    email=models.EmailField()
-    city = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='uploads/finman/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
     state = models.CharField(max_length=50)
     
-
-    address= models.CharField(max_length=250, default='', blank=True, null= True)
-    image= models.ImageField(upload_to='uploads/finman')
 
 
     #to save the data
@@ -98,17 +96,15 @@ class FinManager(models.Model):
 
 class Invman(models.Model):
  
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField (max_length=50)
-    phone = models.CharField(max_length=10)
-    email=models.EmailField()
-    city = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='uploads/invman/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
     state = models.CharField(max_length=50)
     
-
-    address= models.CharField(max_length=250, default='', blank=True, null= True)
-    image= models.ImageField(upload_to='uploads/invman')
-
 
     #to save the data
     def register(self):
@@ -116,7 +112,7 @@ class Invman(models.Model):
 
     
 class Brand(models.Model):
-    bname=models.CharField(max_length=50)
+    brand=models.CharField(max_length=50)
     vendors= models.ForeignKey(Vendor,on_delete=models.CASCADE,default=1 )
 
 class Product(models.Model):
