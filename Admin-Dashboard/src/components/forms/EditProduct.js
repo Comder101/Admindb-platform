@@ -9,6 +9,10 @@ import axios from 'axios';
 
 export default function EditProduct() {
 
+
+    const location = useLocation();
+    let oldobj = location.state.obj.e;
+
     const [catarray, setcatarray] = useState([
         { id: 1, category: 'fruits' },
         { id: 2, category: 'vegetables' },
@@ -100,8 +104,7 @@ export default function EditProduct() {
         setofferarray(json);
     }
 
-    const location = useLocation();
-    let oldobj = location.state.obj.e;
+    
 
 
     const [obj, setobj] = useState({

@@ -28,7 +28,7 @@ const CustomerDetails = () => {
 
   // getcustomer api
   const getCustomers = async () => {
-    const response = await fetch(`http://127.0.0.1:8000/api/customer/`, {
+    const response = await fetch(`https://agrocart.onrender.com/api/customer/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const CustomerDetails = () => {
     setAllCustomers(json);
   }
 
-  const onDelete = (id,event) => {
+  const onDelete = (id, event) => {
     event.preventDefault();
     axios.delete(`http://localhost:8000/api/customer/${id}`)
       .then((response) => {
@@ -74,7 +74,7 @@ const CustomerDetails = () => {
             <div className="btn flex m-0 p-0">
               <Modal btnname="DETAILS" compinfo={<ViewSingleRole obj={e} role="CUSTOMER" />} />
               <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-tailtertiary3 text-black" onClick={() => navigate("/dashboard/editcustomer", { state: { obj: { e } } })}>EDIT</button>
-              <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-red-500 text-black" onClick={(event)=>onDelete(e.id,event)}>DELETE</button>
+              <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-red-500 text-black" onClick={(event) => onDelete(e.id, event)}>DELETE</button>
             </div>
           </div>
         ))}

@@ -31,7 +31,7 @@ const DeliveryDetails = () => {
 
   // getdeliveryagents api
   const getDeliveryAgents = async () => {
-    const response = await fetch(`http://127.0.0.1:8000/api/delivpar/`, {
+    const response = await fetch(`https://agrocart.onrender.com/api/delivpar/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

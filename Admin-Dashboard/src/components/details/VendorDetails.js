@@ -28,7 +28,7 @@ const VenodrDetails = () => {
 
    // getVendors api
    const getVendors = async () => {
-    const response = await fetch(`http://127.0.0.1:8000/api/vendor/`, {
+    const response = await fetch(`https://agrocart.onrender.com/api/vendor/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

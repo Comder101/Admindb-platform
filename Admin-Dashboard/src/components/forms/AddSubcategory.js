@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import '../../App.css';
 import Navbar from '../Navbar';
 import axios from 'axios';
@@ -17,15 +17,15 @@ export default function AddSubcategory() {
 
 
     const getCatArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/category/`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
+        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
         const json = await response.json();
         setcatarray(json);
-      }
+    }
 
 
     const [obj, setobj] = useState({
@@ -39,24 +39,30 @@ export default function AddSubcategory() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(obj+" "+isToggled)
-        axios.post("http://localhost:8000/api/customer/",{
-            category:obj.category,
-            subcategory:obj.subcategory,
-            color:obj.color,
-            allowed:isToggled
-        })
-        .then((response)=>{
-            console.log(response);
-            setobj({ category: '', subcategory: '', color: ''});
-            // e.target.reset();
-        })
-        .catch((error)=>console.log(error))
+        // console.log(obj + " " + isToggled)
+        if (obj.category === '' || obj.subcategory === '' || obj.color === '') {
+            alert("Please fill all the fields");
+            return;
+        }
+        else {
+
+            axios.post("https://agrocart.onrender.com/api/subcategory/", {
+                category: obj.category,
+                subcategory: obj.subcategory,
+                color: obj.color,
+                allowed: isToggled
+            })
+                .then((response) => {
+                    console.log(response);
+                    setobj({ category: '', subcategory: '', color: '' });
+                })
+                .catch((error) => console.log(error))
+        }
     }
 
     const onDiscard = (e) => {
         e.preventDefault();
-        setobj({ category: '', subcategory: '', color: ''});
+        setobj({ category: '', subcategory: '', color: '' });
     }
 
     const onChange = (e) => {
@@ -66,7 +72,7 @@ export default function AddSubcategory() {
     useEffect(() => {
         getCatArray();
     }, [])
-    
+
 
     return (
         <>
@@ -102,11 +108,11 @@ export default function AddSubcategory() {
                                 <div className='flex py-2'>
                                     <div className='flex-col justify-center'>
 
-                                        <label className='py-3 font-bold'>Product Allowed : yes no toggle button</label>
+                                        <label className='py-1 mr-2 font-bold'>Product Allowed : </label>
                                     </div>
                                     <div className='flex-col justify-center'>
                                         {/* <input required value={obj.productcatallowed} type="" name="productcatallowed" id="productcatallowed" /> */}
-                                        <Switch isToggled={isToggled} onToggle={()=>setisToggled(!isToggled)}/>
+                                        <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
 
                                     </div>
                                 </div>

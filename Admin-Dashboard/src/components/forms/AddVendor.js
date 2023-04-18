@@ -33,24 +33,31 @@ export default function AddVendor() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('agentimage', agentimage);
-        console.log(obj + "formdata : \n" + formData);
-        axios.post("http://localhost:8000/api/vendor/",{
-            firstname:obj.firstname,
-            lastname:obj.lastname,
-            email:obj.email,
-            contact: obj.contact,
-            city:obj.city,
-            address:obj.address,
-            state:obj.state,
-            //agentimage: formData
-        })
-        .then((response)=>{
-            console.log(response);
-            // e.target.reset();
-        })
-        .catch((error)=>console.log(error))
+        // console.log(obj + "formdata : \n" + formData);
+        if (obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.city === '' || obj.address === '' || obj.state === '') {
+            alert("Please fill all the fields");
+            return;
+        }
+        else {
 
-        
+            axios.post("https://agrocart.onrender.com/api/vendor/", {
+                firstname: obj.firstname,
+                lastname: obj.lastname,
+                email: obj.email,
+                contact: obj.contact,
+                city: obj.city,
+                address: obj.address,
+                state: obj.state,
+                //agentimage: formData
+            })
+                .then((response) => {
+                    console.log(response);
+                    // e.target.reset();
+                })
+                .catch((error) => console.log(error))
+        }
+
+
     }
 
     const onDiscard = (e) => {
@@ -68,7 +75,7 @@ export default function AddVendor() {
 
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });
-        
+
     }
 
 

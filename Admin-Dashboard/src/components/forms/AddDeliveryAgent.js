@@ -32,9 +32,15 @@ export default function AddDeliveryAgent() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('agentimage', agentimage);
-        console.log(obj + "formdata : \n" + formData);
-        axios.post("http://localhost:8000/api/delivpar/",{
-            firstname:obj.firstname,
+        // console.log(obj + "formdata : \n" + formData);
+        if(obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.city === '' || obj.address === '' || obj.state === ''){
+            alert("Please fill all the fields");
+            return;
+        }
+        else{
+
+            axios.post("https://agrocart.onrender.com/api/delivpar/",{
+                firstname:obj.firstname,
             lastname:obj.lastname,
             email:obj.email,
             contact: obj.contact,
@@ -48,6 +54,7 @@ export default function AddDeliveryAgent() {
             // e.target.reset();
         })
         .catch((error)=>console.log(error))
+    }
 
         
     }

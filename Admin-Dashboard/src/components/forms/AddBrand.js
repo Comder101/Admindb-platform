@@ -15,7 +15,7 @@ export default function AddBrand() {
     ])
 
     const getVendors = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/vendor/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/vendor/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,17 +33,24 @@ export default function AddBrand() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("inside handle submit");
+        // console.log("inside handle submit");
+        if (obj.productname === '' || obj.bvendors === '') {
+            alert("Please fill all the fields");
+            return;
+        }
+        else {
 
-        axios.post("http://localhost:8000/api/brand/", {
-            bname: obj.productname,
-            //vendors: obj.bvendors,
-        })
-            .then((response) => {
-                console.log(response);
-                // e.target.reset();
+
+            axios.post("https://agrocart.onrender.com/api/brand/", {
+                bname: obj.productname,
+                vendors: obj.bvendors,
             })
-            .catch((error) => console.log(error))
+                .then((response) => {
+                    console.log(response);
+                    // e.target.reset();
+                })
+                .catch((error) => console.log(error))
+        }
     }
 
 
@@ -85,7 +92,7 @@ export default function AddBrand() {
                                     <label>Select Brand Vendor</label>
                                     <select required name="bvendors" value={obj.bvendors} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
                                         {vendorarray.map((cat) => (
-                                            <option key={cat.id} value={cat.brand}>{cat.brand}</option>
+                                            <option key={cat.id} value={cat.firstname}>{cat.firstname}</option>
                                         ))}
                                     </select>
                                 </div>

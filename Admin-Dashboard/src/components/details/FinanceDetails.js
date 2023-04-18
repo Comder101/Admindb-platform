@@ -27,7 +27,7 @@ const FinanceDetails = () => {
 
   // getFinanceManager api
   const getFinanceManager = async () => {
-    const response = await fetch(`http://127.0.0.1:8000/api/finman/`, {
+    const response = await fetch(`https://agrocart.onrender.com/api/finman/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

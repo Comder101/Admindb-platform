@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
 
@@ -15,6 +15,17 @@ export default function AddProducts() {
         { id: 4, category: 'meat' },
     ])
 
+    const getCatArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setcatarray(json);
+    }
+
     const [subcatarray, setsubcatarray] = useState([
         { id: 1, subcategory: 'apple' },
         { id: 2, subcategory: 'banana' },
@@ -22,19 +33,53 @@ export default function AddProducts() {
         { id: 4, subcategory: 'orange' },
     ])
 
+    const getSubcatArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/subcategory/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setsubcatarray(json);
+    }
+
     const [brandarray, setbrandarray] = useState([
-        { id: 1, brand: 'ParleG' },
-        { id: 2, brand: 'Amul' },
-        { id: 3, brand: 'Yash' },
-        { id: 4, brand: 'Palekar' },
+        { id: 1, bname: 'ParleG' },
+        { id: 2, bname: 'Amul' },
+        { id: 3, bname: 'Yash' },
+        { id: 4, bname: 'Palekar' },
     ])
 
+    const getBrandArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/brand/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setbrandarray(json);
+    }
+
     const [uomarray, setuomarray] = useState([
-        { id: 1, uom: 1 },
-        { id: 2, uom: 2 },
-        { id: 3, uom: 3 },
-        { id: 4, uom: 4 },
+        { id: 1, name: "gm" },
+        { id: 2, name: "kg" },
+        { id: 3, name: "ml" },
+        { id: 4, name: "ltr" },
     ])
+
+    const getUomArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/uom/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setuomarray(json);
+    }
+
 
     const [offerarray, setofferarray] = useState([
         { id: 1, offer: "10 % off" },
@@ -43,22 +88,49 @@ export default function AddProducts() {
         { id: 4, offer: "Buy 1 Get 1" },
     ])
 
+    const getOfferArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/offer/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setofferarray(json);
+    }
     const [obj, setobj] = useState({
         productname: '',
         productprice: 0,
-        productimage: null,
         category: '',
         subcategory: '',
         brand: '',
-        uom: 0,
+        uom: '',
         offer: ''
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.productname === '' || obj.productprice === 0 || obj.productimage === null || obj.category === '' || obj.subcategory === '' || obj.brand === '' || obj.uom === 0 || obj.offer === '') {
-            alert('Please fill all the fields');
+        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.subcategory === '' || obj.brand === '' || obj.uom === '' || obj.offer === '') {
+            alert("Please fill all the fields");
+            return;
         }
+        else {
+
+            axios.post(`https://agrocart.onrender.com/api/product/`, {
+                productname: obj.productname,
+                productprice: obj.productprice,
+                category: obj.category,
+                subcategory: obj.subcategory,
+                brand: obj.brand,
+                uom: obj.uom,
+                offer: obj.offer,
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => console.log("Error : \n" + error))
+        }
+
         console.log(obj);
     }
 
@@ -67,7 +139,6 @@ export default function AddProducts() {
         setobj({
             productname: '',
             productprice: 0,
-            productimage: null,
             category: '',
             subcategory: '',
             brand: '',
@@ -79,6 +150,14 @@ export default function AddProducts() {
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });
     }
+
+    useEffect(() => {
+        getCatArray();
+        // getSubcatArray();
+        // getBrandArray();
+        // getUomArray();
+        // getOfferArray();
+    }, [])
 
     return (
         <>
@@ -125,7 +204,7 @@ export default function AddProducts() {
                                     <label>Brand</label><br />
                                     <select required value={obj.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onChange={onChange}>
                                         {brandarray.map((b) => (
-                                            <option key={b.id} value={b.brand}>{b.brand}</option>
+                                            <option key={b.id} value={b.bname}>{b.bname}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -133,7 +212,7 @@ export default function AddProducts() {
                                     <label>UMO(Kg's)</label><br />
                                     <select required value={obj.uom} className='mt-1 border px-2 py-2 w-full rounded-md' name="uom" onChange={onChange}>
                                         {uomarray.map((b) => (
-                                            <option key={b.id} value={b.uom}>{b.uom}</option>
+                                            <option key={b.id} value={b.name}>{b.name}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -149,7 +228,7 @@ export default function AddProducts() {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Upload Product Image</label>
-                                    <input required className='mt-1 border p-2 rounded-md' type="file" value={obj.productimage} name="productimage" onChange={onChange} />
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="productimage" onChange={onChange} />
                                 </div>
 
                                 <div className='flex mx-auto mt-2'>
