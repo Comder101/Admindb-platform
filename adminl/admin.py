@@ -1,17 +1,5 @@
 from django.contrib import admin
-from  .models  import Product
-from  .models  import Category
-from .models import Customer
-
-from .models import SubCategory
-
-from .models import Uom
-from .models import Vendor
-from .models import DelivPart
-from .models import Invman
-from .models import FinManager
-
-from .models import Brand
+from  .models  import *
 # class AdminProduct(admin.ModelAdmin):
 #     list_display = ['name', 'price', 'category']
 
@@ -31,5 +19,5 @@ admin.site.register(Invman)
 
 admin.site.register(FinManager)
 admin.site.register(Brand)
-
+admin.site.register(adminl)
 # Register your models here.

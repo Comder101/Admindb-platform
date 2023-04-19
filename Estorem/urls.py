@@ -54,5 +54,7 @@ urlpatterns = [
     re_path(r'^api/uom/$', views.uom_list),
     re_path(r'^api/uom/([0-9])$', views.uom_detail),
 
+    re_path(r'^api/adminl/$', views.adminl_list),
+
 ]
 

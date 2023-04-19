@@ -52,3 +52,8 @@ class FinmanSerializer(serializers.ModelSerializer):
         model = FinManager
         fields = '__all__'
 
+class AdminlSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = adminl
+        fields = '__all__'
+
