@@ -52,6 +52,15 @@ export default function AddCustomer() {
             })
                 .then((response) => {
                     console.log(response);
+                    setobj({
+                        firstname: '',
+                        lastname: '',
+                        email: '',
+                        contact: '',
+                        city: '',
+                        address: '',
+                        pin: ''
+                    });
                     // e.target.reset();
                 })
                 .catch((error) => console.log(error))

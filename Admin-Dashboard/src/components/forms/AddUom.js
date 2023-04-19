@@ -27,7 +27,6 @@ export default function AddUom() {
                 .then((response) => {
                     console.log(response);
                     setobj({ uom: '' });
-                    console.log("hello");
                 })
                 .catch((error) => console.log(error))
         }

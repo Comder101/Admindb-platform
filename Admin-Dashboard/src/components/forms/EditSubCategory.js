@@ -27,13 +27,15 @@ export default function EditSubCategory() {
         subcategory: '',
         updatedsubcategory:'',
         color:'',
-        productcatallowed:0
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.category === '' || obj.subcategory === '' || obj.updatedsubcategory === '' || obj.color === '' || obj.productcatallowed === 0) {
+        if (obj.category === '' || obj.subcategory === '' || obj.updatedsubcategory === '' || obj.color === '') {
             alert('Please fill all the fields');
+        }
+        else{
+            // put req
         }
         console.log(obj);
     }

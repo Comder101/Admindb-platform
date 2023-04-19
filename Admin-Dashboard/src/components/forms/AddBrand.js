@@ -34,7 +34,8 @@ export default function AddBrand() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("inside handle submit");
-        if (obj.productname === '' || obj.bvendors === '') {
+        console.log(obj)
+        if (obj.productname === '' || obj.bvendors === ''||obj.bvendors==="select") {
             alert("Please fill all the fields");
             return;
         }
@@ -47,7 +48,10 @@ export default function AddBrand() {
             })
                 .then((response) => {
                     console.log(response);
-                    // e.target.reset();
+                    setobj({
+                        productname: '',
+                        bvendors: ''
+                    });
                 })
                 .catch((error) => console.log(error))
         }
@@ -91,6 +95,7 @@ export default function AddBrand() {
                                 <div className='flex flex-col py-2'>
                                     <label>Select Brand Vendor</label>
                                     <select required name="bvendors" value={obj.bvendors} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                    <option value="select">Select</option>
                                         {vendorarray.map((cat) => (
                                             <option key={cat.id} value={cat.firstname}>{cat.firstname}</option>
                                         ))}

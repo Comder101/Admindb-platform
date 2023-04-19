@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
-// import { useForm } from "react-hook-form";
+import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
 
@@ -20,10 +20,34 @@ export default function EditUom() {
         uom: ''
     })
 
+    const getUomArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/uom/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setuomarray(json);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.updateduom === '' || obj.uom === '') {
+        if (obj.updateduom === '' || obj.uom === ''||obj.uom==='select') {
             alert('Please fill all the fields');
+        }
+        else{
+            axios.put(`https://agrocart.onrender.com/api/uom/${obj.uom}`,{
+                name:obj.updateduom,
+            })
+            .then((response) => {
+                console.log(response);
+                setobj({
+                    updateduom: '',
+                    uom: ''
+                });
+            })
+            .catch((error) => console.log(error))
         }
         console.log(obj);
     }
@@ -39,6 +63,10 @@ export default function EditUom() {
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });
     }
+
+    useEffect(() => {
+        getUomArray();
+    }, [])
 
     return (
         <>
@@ -57,8 +85,9 @@ export default function EditUom() {
                                 <div className='flex flex-col py-2'>
                                     <label>Select a UOM</label>
                                     <select required name="uom" value={obj.uom} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                        <select value="select">Select</select>
                                         {uomarray.map((cat) => (
-                                            <option key={cat.id} value={cat.uom}>{cat.uom}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.name}</option>
                                         ))}
                                     </select>
                                 </div>

@@ -210,7 +210,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editproduct"
+                        path="/dashboard/viewproducts"
                         routename="Edit Product"
                         icon={<GrAddCircle />}
                       />
@@ -254,7 +254,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editdeliveryagent"
+                        path="/dashboard/viewdeliveryagents"
                         routename="Edit Delivery Agent"
                         icon={<GrAddCircle />}
                       />
@@ -286,7 +286,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editinventorymanager"
+                        path="/dashboard/viewinventorymanagers"
                         routename="Edit Inventory Manager"
                         icon={<GrAddCircle />}
                       />
@@ -319,7 +319,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editvendor"
+                        path="/dashboard/viewvendors"
                         routename="Edit Vendor"
                         icon={<GrAddCircle />}
                       />
@@ -352,7 +352,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editfinancemanager"
+                        path="/dashboard/viewfinancemanagers"
                         routename="Edit Finance Manager"
                         icon={<GrAddCircle />}
                       />
@@ -385,7 +385,7 @@ const SideBar = ({ children }) => {
                   <li>
                     <Link class="dropdown-item" href="#">
                       <MyNavitem
-                        path="/dashboard/editcustomer"
+                        path="/dashboard/viewcustomers"
                         routename="Edit Customer"
                         icon={<GrAddCircle />}
                       />

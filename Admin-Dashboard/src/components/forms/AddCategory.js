@@ -18,11 +18,12 @@ export default function AddCategory() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(catobj+" "+isToggled)
-        if(catobj.category==='' || catobj.color===''){
+        if(catobj.category===''){
             alert("Please fill all the fields");
             return;
         }
-        else{     
+        else{    
+            catobj.color===""?catobj.color="#000000":catobj.color=catobj.color; 
             axios.post("https://agrocart.onrender.com/api/category/",{
                 category:catobj.category,
                 color:catobj.color,
@@ -77,7 +78,6 @@ export default function AddCategory() {
                                 <div className='flex-col py-2'>
 
                                     <label  className="mr-4">Subcategory Allowed : </label>
-                                    {/* <input value={catobj.subcatallowed} type="checkbox" name="subcatallowed" id="subcatallowed" /> */}
                                     <Switch isToggled={isToggled} onToggle={()=>setisToggled(!isToggled)}/>
                                 </div>
 

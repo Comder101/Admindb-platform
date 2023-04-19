@@ -40,12 +40,13 @@ export default function AddSubcategory() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(obj + " " + isToggled)
-        if (obj.category === '' || obj.subcategory === '' || obj.color === '') {
+        if (obj.category === '' || obj.subcategory === ''||obj.subcategory==='select') {
             alert("Please fill all the fields");
             return;
         }
         else {
 
+            obj.color===""?obj.color="#000000":obj.color=obj.color;
             axios.post("https://agrocart.onrender.com/api/subcategory/", {
                 category: obj.category,
                 subcategory: obj.subcategory,
@@ -90,6 +91,7 @@ export default function AddSubcategory() {
                                 <div className='flex flex-col py-2'>
                                     <label>Choose a Category</label>
                                     <select required name="category" value={obj.category} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                    <option value="select">Select</option>
                                         {catarray.map((cat) => (
                                             <option key={cat.id} value={cat.category}>{cat.category}</option>
                                         ))}

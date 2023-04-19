@@ -27,7 +27,7 @@ def custm_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def custm_detail(request, pk):
     try:
         customer = Customer.objects.get(pk=pk)
@@ -63,7 +63,7 @@ def invm_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def invm_detail(request, pk):
     try:
         inventorymanager = Invman.objects.get(pk=pk)
@@ -98,7 +98,7 @@ def vendor_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def vendor_detail(request, pk):
     try:
         vendor = Vendor.objects.get(pk=pk)
@@ -133,7 +133,7 @@ def deliv_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def deliv_detail(request, pk):
     try:
         deliverypartner = DelivPart.objects.get(pk=pk)
@@ -168,7 +168,7 @@ def uom_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def uom_detail(request, pk):
     try:
         uom = Uom.objects.get(pk=pk)
@@ -204,7 +204,7 @@ def prod_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def prod_detail(request, pk):
     try:
         prod= Product.objects.get(pk=pk)
@@ -239,7 +239,7 @@ def categ_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def categ_detail(request, pk):
     try:
         category= Category.objects.get(pk=pk)
@@ -274,7 +274,7 @@ def subcateg_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def subcateg_detail(request, pk):
     try:
         subcateg= SubCategory.objects.get(pk=pk)
@@ -309,7 +309,7 @@ def brand_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def brand_detail(request, pk):
     try:
         brand= Brand.objects.get(pk=pk)
@@ -344,7 +344,7 @@ def finman_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE','POST'])
 def finman_detail(request, pk):
     try:
         finman= FinManager.objects.get(pk=pk)

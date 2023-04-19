@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import '../../App.css';
 import Navbar from '../Navbar';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -11,6 +11,7 @@ export default function EditProduct() {
 
 
     const location = useLocation();
+    const navigate=useNavigate();
     let oldobj = location.state.obj.e;
 
     const [catarray, setcatarray] = useState([
@@ -119,8 +120,9 @@ export default function EditProduct() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.subcategory === '' || obj.brand === '' || obj.uom === '' || obj.offer === '') {
-            alert('Please fill all the fields');
+        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.category === 'select' || obj.subcategory === '' || obj.subcategory === 'select' || obj.brand === '' || obj.brand === 'select' || obj.uom === '' || obj.uom === 'select' || obj.offer === '' || obj.offer === 'select') {
+            alert("Please fill all the fields");
+            return;
         }
         else {
             axios.put(`https://agrocart.onrender.com/api/product/${oldobj.id}`, {
@@ -134,6 +136,7 @@ export default function EditProduct() {
             })
                 .then((response) => {
                     console.log(response);
+                    navigate("/dashboard/viewproducts")
                 })
                 .catch((error) => console.log(error))
         }
@@ -194,6 +197,7 @@ export default function EditProduct() {
                                 <div>
                                     <label>Category</label><br />
                                     <select required value={obj.category} className='mt-1 border px-2 py-2 w-full rounded-md' name="category" onChange={onChange}>
+                                    {/* <option value='select'>select</option> */}
                                         {catarray.map((cat) => (
                                             <option key={cat.id} value={cat.category}>{cat.category}</option>
                                         ))}
@@ -202,7 +206,8 @@ export default function EditProduct() {
                                 <div className='my-2'>
                                     <label>Subcategory</label><br />
                                     <select required value={obj.subcategory} className='mt-1 border px-2 py-2 w-full rounded-md' name="subcategory" onChange={onChange}>
-                                        {subcatarray.map((subcat) => (
+                                    {/* <option value='select'>select</option> */}
+                                    {subcatarray.map((subcat) => (
                                             <option key={subcat.id} value={subcat.subcategory}>{subcat.subcategory}</option>
                                         ))}
                                     </select>
@@ -210,9 +215,7 @@ export default function EditProduct() {
                                 <div className='my-2'>
                                     <label>Brand</label><br />
                                     <select required value={obj.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onChange={onChange}>
-                                        {/* {brandarray.map((b) => (
-                                            <option key={b.id} value={b.brand}>{b.brand}</option>
-                                        ))} */}
+                                    {/* <option value='select'>select</option> */}
                                         {brandarray.map((b) => (
                                             <option key={b.id} value={b.bname}>{b.bname}</option>
                                         ))}
@@ -221,7 +224,8 @@ export default function EditProduct() {
                                 <div className='my-2'>
                                     <label>Unit of Measurement</label><br />
                                     <select required value={obj.uom} className='mt-1 border px-2 py-2 w-full rounded-md' name="uom" onChange={onChange}>
-                                        {uomarray.map((b) => (
+                                    {/* <option value='select'>select</option> */}
+                                    {uomarray.map((b) => (
                                             <option key={b.id} value={b.name}>{b.name}</option>
                                         ))}
                                     </select>
@@ -229,7 +233,8 @@ export default function EditProduct() {
                                 <div className='my-2'>
                                     <label>Offer</label><br />
                                     <select required value={obj.offer} className='mt-1 border px-2 py-2 w-full rounded-md' name="offer" onChange={onChange}>
-                                        {offerarray.map((b) => (
+                                    {/* <option value='select'>select</option> */}
+                                    {offerarray.map((b) => (
                                             <option key={b.id} value={b.offer}>{b.offer}</option>
                                         ))}
                                     </select>

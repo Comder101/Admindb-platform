@@ -1,34 +1,62 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
-// import { useForm } from "react-hook-form";
+import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
+import Switch from '../Switch';
+
 
 
 export default function EditCategory() {
 
 
     const [catarray, setcatarray] = useState([
-        { id: 1, category: 'fruits' },
-        { id: 2, category: 'vegetables' },
-        { id: 3, category: 'dairy' },
-        { id: 4, category: 'meat' },
+            // { id: 1, category: 'fruits' },
+        // { id: 2, category: 'vegetables' },
+        // { id: 3, category: 'dairy' },
+        // { id: 4, category: 'meat' },
     ])
+
+    const getCatArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setcatarray(json);
+    }
 
     
 
-    const [catobj, setcatobj] = useState({ category: '',newcategory:'',color:'',subcatallowed:0 });
+    const [catobj, setcatobj] = useState({category: '',newcategory:'',color:'' });
+    const [isToggled, setisToggled] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(catobj.category==='' || catobj.newcategory==='' || catobj.color==='' || catobj.subcatallowed===0){
+        if(catobj.category==='select' || catobj.newcategory===''){
             alert('Please fill all the fields');
+        }
+        else{
+            catobj.color===""?catobj.color="#000000":catobj.color=catobj.color; 
+            axios.put(`https://agrocart.onrender.com/api/category/${catobj.category}`,{
+                category:"appleupdate",
+                color:"#11111",
+                allowed:"true"
+            })
+            .then((response) => {
+                console.log(response);
+                setcatobj({ category: '',newcategory:'',color:'' });
+            })
+            .catch((error) => console.log(error))
         }
         console.log(catobj);
     }
 
     const onDiscard=(e)=>{
         e.preventDefault();
-        setcatobj({ category: '',newcategory:'',color:'',subcatallowed:0 });
+        setcatobj({ category: '',newcategory:'',color:'' });
     }
 
     const onChange = (e) => {
@@ -36,7 +64,11 @@ export default function EditCategory() {
     }
 
 
-
+    useEffect(() => {
+      getCatArray();
+    //   console.log(catarray)
+    }, [])
+    
 
 
     return (
@@ -55,8 +87,9 @@ export default function EditCategory() {
                                 <div className='flex flex-col py-2'>
                                     <label>Choose a Category</label>
                                     <select required name="category" value={catobj.category} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                    <option value="select">Select</option>
                                         {catarray.map((cat) => (
-                                            <option key={cat.id} value={cat.category}>{cat.category}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.category}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -73,10 +106,10 @@ export default function EditCategory() {
                                 <div className='flex py-2'>
                                     <div className='flex-col justify-center'>
 
-                                        <label className='py-3 font-bold'>Subcategory Allowed : yes no toggle button</label>
+                                        <label className='py-3 mr-4 font-bold'>Subcategory Allowed : </label>
                                     </div>
-                                    <div className='flex-col justify-center'>
-                                        <input required value={catobj.subcatallowed} type="checkbox" name="subcatallowed" id="subcatallowed" />
+                                    <div className='flex-col py-2 justify-center'>
+                                        <Switch isToggled={isToggled} onToggle={()=>setisToggled(!isToggled)}/>
                                     </div>
                                 </div>
                                 <div className='flex mx-auto'>

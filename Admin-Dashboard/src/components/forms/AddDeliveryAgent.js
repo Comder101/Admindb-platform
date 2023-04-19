@@ -51,7 +51,15 @@ export default function AddDeliveryAgent() {
         })
         .then((response)=>{
             console.log(response);
-            // e.target.reset();
+            setobj({
+                firstname: '',
+                lastname: '',
+                email: '',
+                contact: '',
+                city: '',
+                address: '',
+                state: ''
+            });
         })
         .catch((error)=>console.log(error))
     }
