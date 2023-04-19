@@ -9,6 +9,17 @@ import axios from 'axios';
 
 export default function AddVendor() {
 
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
 
 
     const [obj, setobj] = useState({
@@ -52,6 +63,7 @@ export default function AddVendor() {
             })
                 .then((response) => {
                     console.log(response);
+                    showAlert("Vendor Added Successfully","success")
                     setobj({
                         firstname: '',
                         lastname: '',

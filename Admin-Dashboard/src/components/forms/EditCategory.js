@@ -9,6 +9,18 @@ import Switch from '../Switch';
 
 export default function EditCategory() {
 
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
+
 
     const [catarray, setcatarray] = useState([
             // { id: 1, category: 'fruits' },
@@ -47,6 +59,7 @@ export default function EditCategory() {
             })
             .then((response) => {
                 console.log(response);
+                showAlert("Category Updated Successfully","success")
                 setcatobj({ category: '',newcategory:'',color:'' });
             })
             .catch((error) => console.log(error))

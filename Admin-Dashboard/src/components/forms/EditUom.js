@@ -3,10 +3,22 @@ import { useState } from "react";
 import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
+import Alert from '../Alert';
 
 
 export default function EditUom() {
 
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
 
     const [uomarray, setuomarray] = useState([
         { id: 1, uom: 'kg' },
@@ -42,6 +54,7 @@ export default function EditUom() {
             })
             .then((response) => {
                 console.log(response);
+                showAlert("Unit of Measurement Updated Successfully","success")
                 setobj({
                     updateduom: '',
                     uom: ''
@@ -74,6 +87,7 @@ export default function EditUom() {
                 <div className="main m-0 p-0 bg-tailtertiary">
 
                     <Navbar pagename="Edit Unit Of Measurement Page" />
+                    <Alert alert={alert} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>

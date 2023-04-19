@@ -4,13 +4,24 @@ import { useForm } from "react-hook-form";
 import '../../App.css';
 import Navbar from '../Navbar';
 import axios from 'axios';
+import Alert from '../Alert';
 
 
 
 
 export default function AddInventoryManager() {
 
+    const [alert, setAlert] = useState(null)
 
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
 
     const [obj, setobj] = useState({
         firstname: '',
@@ -53,6 +64,7 @@ export default function AddInventoryManager() {
             })
                 .then((response) => {
                     console.log(response);
+                    showAlert("Invenotory Manager Added Successfully","success")
                     setobj({
                         firstname: '',
                         lastname: '',
@@ -93,6 +105,7 @@ export default function AddInventoryManager() {
                 <div className="main m-0 p-0 bg-tailtertiary">
 
                     <Navbar pagename="Add Inventory Page" />
+                    <Alert alert={alert} />
                     <div className='mt-4 items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>

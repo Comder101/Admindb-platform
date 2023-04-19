@@ -1,11 +1,26 @@
 import React from 'react'
 import { useState } from "react";
-// import { useForm } from "react-hook-form";
+import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
+import Alert from '../Alert';
 
 
 export default function EditSubCategory() {
+
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
+
 
     const [catarray, setcatarray] = useState([
         { id: 1, category: 'fruits' },
@@ -36,6 +51,20 @@ export default function EditSubCategory() {
         }
         else{
             // put req
+            axios.put(`https://agrocart.onrender.com/api/subcategory/$`,{
+
+            })
+            .then(res=>{
+                console.log(res.data);
+                showAlert('Sub-Category Updated Successfully','success');
+            }
+            )
+            .catch(err=>{
+                console.log(err);
+                // showAlert('Error in Updating Sub-Category','danger');
+            }
+            )
+
         }
         console.log(obj);
     }
@@ -55,6 +84,7 @@ export default function EditSubCategory() {
                 <div className="main m-0 p-0 bg-tailtertiary">
 
                     <Navbar pagename="Edit Sub-Category Page" />
+                    <Alert alert={alert} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>

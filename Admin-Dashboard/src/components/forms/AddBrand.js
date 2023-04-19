@@ -3,9 +3,22 @@ import { useState } from "react";
 import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
+import Alert from '../Alert';
 
 
 export default function AddBrand() {
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
 
     const [vendorarray, setvendorarray] = useState([
         { id: 1, brand: 'Vendor1' },
@@ -47,6 +60,7 @@ export default function AddBrand() {
                 vendors: obj.bvendors,
             })
                 .then((response) => {
+                    showAlert("Brand Added Successfully","success");
                     console.log(response);
                     setobj({
                         productname: '',
@@ -81,6 +95,7 @@ export default function AddBrand() {
                 <div className="main m-0 p-0 bg-tailtertiary">
 
                     <Navbar pagename="Add Brand Page" />
+                    <Alert alert={alert} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>

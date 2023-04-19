@@ -4,9 +4,24 @@ import '../../App.css';
 import Navbar from '../Navbar';
 import axios from 'axios';
 import Switch from '../Switch';
+import Alert from '../Alert';
 
 
 export default function AddSubcategory() {
+
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (message, type) => {
+        setAlert({
+            msg: message,
+            type: type
+        })
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000);
+    }
+
 
     const [catarray, setcatarray] = useState([
         { id: 1, category: 'fruits' },
@@ -14,7 +29,6 @@ export default function AddSubcategory() {
         { id: 3, category: 'dairy' },
         { id: 4, category: 'meat' },
     ])
-
 
     const getCatArray = async () => {
         const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
@@ -55,6 +69,7 @@ export default function AddSubcategory() {
             })
                 .then((response) => {
                     console.log(response);
+                    showAlert("Subcategroy Added Successfully","success")
                     setobj({ category: '', subcategory: '', color: '' });
                 })
                 .catch((error) => console.log(error))
@@ -81,6 +96,7 @@ export default function AddSubcategory() {
                 <div className="main m-0 p-0 bg-tailtertiary">
 
                     <Navbar pagename="Add Sub-Category Page" />
+                    <Alert alert={alert} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
