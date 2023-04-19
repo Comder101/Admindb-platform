@@ -34,7 +34,6 @@ import CustomerPage from "./pages/CustomerPage";
 import FinancePage from "./pages/FinancePage";
 
 
-Modal.setAppElement('#root');
 
 
 function App() {

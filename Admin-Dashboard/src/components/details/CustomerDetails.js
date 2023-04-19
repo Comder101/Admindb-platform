@@ -12,18 +12,7 @@ const CustomerDetails = () => {
   const navigate = useNavigate();
 
   // AllCustomers Array
-  const [AllCustomers, setAllCustomers] = useState([
-    {
-      firstname: 'Rohannnn',
-      lastname: 'Jadhav',
-      email: 'rohan@gmail.com',
-      contact: '11111111111',
-      agentimage: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202212/rohit_sharma-sixteen_nine.png?size=948:533',
-      city: 'georgia',
-      address: 'Cecilia Chapman 711-2880 Nulla St.Mankato Mississippi 96522(257) 563-7401',
-      pin: '415506'
-    }
-  ]);
+  const [AllCustomers, setAllCustomers] = useState([]);
 
 
   // getcustomer api
@@ -38,14 +27,15 @@ const CustomerDetails = () => {
     setAllCustomers(json);
   }
 
+  const [deletehook, setdeletehook] = useState(false)
+
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`http://localhost:8000/api/customer/${id}`)
+    axios.delete(`https://agrocart.onrender.com/api/customer/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
-        navigate("/dashboard/viewcustomers");
-        // e.target.reset();
+        setdeletehook(!deletehook);
       })
       .catch((error) => console.log(error))
   }
@@ -55,6 +45,10 @@ const CustomerDetails = () => {
   useEffect(() => {
     getCustomers();
   }, []);
+
+  useEffect(() => {
+    getCustomers();
+  }, [deletehook]);
 
 
 

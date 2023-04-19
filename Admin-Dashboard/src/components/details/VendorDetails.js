@@ -3,6 +3,7 @@ import "./Orders.css";
 import Modal from "../Modal";
 import ViewSingleRole from "../viewsingle/ViewSingleRole";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -13,18 +14,7 @@ const VenodrDetails = () => {
     const navigate = useNavigate();
 
   // AllVendors Array
-  const [AllVendors, setAllVendors] = useState([
-    {
-      firstname: 'Viraj',
-      lastname: 'Jadhav',
-      email: 'rohan@gmail.com',
-      contact: '11111111111',
-      agentimage: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202212/rohit_sharma-sixteen_nine.png?size=948:533',
-      city: 'georgia',
-      address: 'Cecilia Chapman 711-2880 Nulla St.Mankato Mississippi 96522(257) 563-7401',
-      state: 'Maharashtra'
-    }
-  ]);
+  const [AllVendors, setAllVendors] = useState([]);
 
    // getVendors api
    const getVendors = async () => {
@@ -38,10 +28,27 @@ const VenodrDetails = () => {
     setAllVendors(json);
   }
 
+  const [deletehook, setdeletehook] = useState(false)
+
+  const onDelete = (id, event) => {
+    event.preventDefault();
+    axios.delete(`https://agrocart.onrender.com/api/vendor/${id}`)
+      .then((response) => {
+        console.log(response);
+        console.log('\ndeleted');
+        setdeletehook(!deletehook);
+      })
+      .catch((error) => console.log(error))
+  }
+
+
   useEffect(() => {
     getVendors();
   }, []);
 
+  useEffect(() => {
+    getVendors();
+  }, [deletehook]);
 
   return (
         <>
@@ -61,7 +68,7 @@ const VenodrDetails = () => {
                             <div className="btn flex m-0 p-0">
                                 <Modal btnname="DETAILS" compinfo={<ViewSingleRole obj={e} role="Vendor"/>} />
                                 <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-tailtertiary3 text-black" onClick={()=> navigate("/dashboard/editvendor",{state:{obj:{e}}}) }>EDIT</button>
-                                <Modal btnname="DELETE" compinfo={<><h2 className="text-red-600 text-xl font-bold font-poppins">Are you sure you want to delete this Delivery Agent??</h2></>} />
+                                <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-red-500 text-black" onClick={(event) => onDelete(e.id, event)}>DELETE</button>
                             </div>
                         </div>
                     ))}

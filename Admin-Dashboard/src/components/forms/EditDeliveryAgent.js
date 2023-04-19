@@ -3,13 +3,15 @@ import { useState } from "react";
 import '../../App.css';
 import Navbar from '../Navbar';
 import { useLocation } from 'react-router-dom';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function EditDeliveryAgent() {
 
     const location = useLocation();
+    const navigate = useNavigate();
     let oldobj=location.state.obj.e;
 
 
@@ -28,15 +30,29 @@ export default function EditDeliveryAgent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.agentimage === '' || obj.city === '' || obj.address === '' || obj.state === '') {
+        if (obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.city === '' || obj.address === '' || obj.state === '') {
             alert('Please fill all the fields');
         }
-        else{
-            editDeliveryRequest();
-            console.log("editdeliveryrequest : \n");
+        else {
+            axios.put(`https://agrocart.onrender.com/api/delivpar/${oldobj.id}`, {
+                firstname: obj.firstname,
+                lastname: obj.lastname,
+                email: obj.email,
+                contact: obj.contact,
+                city: obj.city,
+                address: obj.address,
+                state: obj.state
+
+            })
+                .then((response) => {
+                    console.log(response);
+                    console.log('\nedited');
+                    navigate("/dashboard/viewdeliveryagents")
+                })
+                .catch((error) => console.log(error))
         }
-        console.log(obj);
     }
+
 
     const onDiscard = (e) => {
         e.preventDefault();
@@ -54,18 +70,6 @@ export default function EditDeliveryAgent() {
 
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });
-    }
-
-    // editdeliveryrequest Api
-    const editDeliveryRequest=async ()=>{
-        console.log("hiii")
-        const response = await fetch(`http://127.0.0.1:8000/api/deliveryagent/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(obj)
-        });
     }
 
 

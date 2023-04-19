@@ -4,13 +4,15 @@ import '../../App.css';
 import Navbar from '../Navbar';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function EditCustomer() {
 
     const location = useLocation();
-    let oldobj=location.state.obj.e;
+    const navigate = useNavigate();
+    let oldobj = location.state.obj.e;
 
 
 
@@ -27,14 +29,27 @@ export default function EditCustomer() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.agentimage === '' || obj.city === '' || obj.address === '' || obj.pin === '') {
+        if (obj.firstname === '' || obj.lastname === '' || obj.email === '' || obj.contact === '' || obj.city === '' || obj.address === '' || obj.pin === '') {
             alert('Please fill all the fields');
         }
-        else{
-            editcustomerrequest();
-            console.log("editcustomerrequest : \n");
+        else {
+            axios.put(`https://agrocart.onrender.com/api/customer/${oldobj.id}`, {
+                firstname: obj.firstname,
+                lastname: obj.lastname,
+                email: obj.email,
+                contact: obj.contact,
+                city: obj.city,
+                address: obj.address,
+                pin: obj.pin
+
+            })
+                .then((response) => {
+                    console.log(response);
+                    console.log('\nedited');
+                    navigate('/dashboard/viewcustomers');
+                })
+                .catch((error) => console.log(error))
         }
-        console.log(obj);
     }
 
     const onDiscard = (e) => {
@@ -51,17 +66,6 @@ export default function EditCustomer() {
         });
     }
 
-    // editcustomerrequest Api
-    const editcustomerrequest = async () => {
-        console.log("hiii")
-        const response = await fetch(`http://127.0.0.1:8000/api/customer/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ obj })
-        });
-    }
 
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });

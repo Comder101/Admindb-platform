@@ -8,38 +8,55 @@ import axios from "axios";
 export default function AdminLogin({ update, login }) {
     const navigate = useNavigate();
 
-   const [userinfo, setuserinfo] = useState({username:"",password:""})
+    const [userinfo, setuserinfo] = useState({ username: "", password: "" })
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (userinfo.username === '' || userinfo.password === '') {
             alert('Please fill all the fields');
         }
-        else{
-            onLoginSubmit();
+        else {
+            axios.post('http://127.0.0.1:8000/api/adminl/', {
+                username: userinfo.username,
+                password: userinfo.password
+            })
+            .then((response) => {
+                if (response.data.is_superuser) {
+                    // Redirect to superuser dashboard or do something else
+                    navigate("/dashboard/home");
+                } else {
+                    // Display error message or redirect to regular user dashboard
+                    alert("You are not an admin")
+                }
+            })
+            // .catch((error) => console.log(error))
+            navigate("/dashboard/home");
+
+            // console.log("into else")
         }
         console.log(userinfo);
-        navigate("/dashboard/home");
-        
+
     }
 
 
     const onChange = (e) => {
         setuserinfo({ ...userinfo, [e.target.name]: e.target.value });
     }
-    
-  const onLoginSubmit = async (event) => {
-    event.preventDefault();
-    const response = await axios.post('/api/login/', {
-        username: userinfo.username,
-        password: userinfo.password
-    });
-    if (response.data.is_superuser) {
-      // Redirect to superuser dashboard or do something else
-    } else {
-      // Display error message or redirect to regular user dashboard
-    }
-  };
+
+    const onLoginSubmit = async (event) => {
+        event.preventDefault();
+        const response = await axios.post('https://agrocart.onrender.com/api/adminl/', {
+            username: userinfo.username,
+            password: userinfo.password
+        });
+        if (response.data.is_superuser) {
+            // Redirect to superuser dashboard or do something else
+            navigate("/dashboard/home");
+        } else {
+            // Display error message or redirect to regular user dashboard
+            alert("You are not an admin")
+        }
+    };
 
     return (
         <div className='w-full'>
@@ -48,18 +65,18 @@ export default function AdminLogin({ update, login }) {
                     <form className='w-full mx-auto bg-white p-4' onSubmit={handleSubmit}>
 
                         <h2 className='text-center font-bold font-mono text-2xl'>ADMIN LOGIN</h2>
-                        <hr className='w-36 mt-2 border-2 mx-auto'/>
+                        <hr className='w-36 mt-2 border-2 mx-auto' />
 
-                        
+
                         <div className='flex flex-col py-2'>
                             <label>Email</label>
-                            <input required value={userinfo.username} className='mt-1 border p-2 rounded-md' type="email" name='username' placeholder='Enter Email (Username)' onChange={onChange}/>
+                            <input required value={userinfo.username} className='mt-1 border p-2 rounded-md' type="username" name='username' placeholder='Enter Email (Username)' onChange={onChange} />
                         </div>
 
 
                         <div className='flex flex-col py-2'>
                             <label>Password</label>
-                            <input required value={userinfo.password} className='mt-1 border p-2 rounded-md' type="password" name='password' placeholder='Enter Password' onChange={onChange}/>
+                            <input required value={userinfo.password} className='mt-1 border p-2 rounded-md' type="password" name='password' placeholder='Enter Password' onChange={onChange} />
                         </div>
 
                         <button type="submit" className='font-poppins font-bold border w-full mt-3 mb-2 rounded-md py-2 bg-tailprimary hover:bg-tailtertiary text-black' >LOGIN</button>
@@ -67,7 +84,7 @@ export default function AdminLogin({ update, login }) {
                 </div>
             </div>
         </div>
-        
+
     )
 }
 

@@ -12,17 +12,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
 
   // AllCustomers Array
-  const [AllProducts, setAllProducts] = useState([
-    {
-      productname: 'Mango',
-      productprice: 200,
-      category: 'Fruits',
-      subcategory: 'Summer Fruits',
-      brand: 'Yash Providers',
-      uom: '1kg',
-      offer: '10% OFF'
-    }
-  ]);
+  const [AllProducts, setAllProducts] = useState([]);
 
 
   // getproducts api
@@ -37,14 +27,15 @@ const ProductDetails = () => {
     setAllProducts(json);
   }
 
+  const [deletehook, setdeletehook] = useState(false)
+
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`http://localhost:8000/api/customer/${id}`)
+    axios.delete(`http://localhost:8000/api/product/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
-        navigate("/dashboard/viewcustomers");
-        // e.target.reset();
+        setdeletehook(!deletehook);
       })
       .catch((error) => console.log(error))
   }
@@ -54,6 +45,10 @@ const ProductDetails = () => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  useEffect(() => {
+    getProducts();
+  }, [deletehook]);
 
 
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Orders.css";
 import Modal from "../Modal";
 import { useNavigate } from "react-router-dom";
-import EditInventoryManager from "../forms/EditInventoryManager";
+import axios from "axios";
 import ViewSingleRole from "../viewsingle/ViewSingleRole";
 
 
@@ -12,18 +12,7 @@ const InventoryDetails = () => {
 
 
   // AllInventoryManager Array
-  const [AllInventoryManagers, setAllInventoryManagers] = useState([
-    {
-      firstname: 'Umesh',
-      lastname: 'Godse',
-      email: 'umesh@gmail.com',
-      contact: '11111111111',
-      agentimage: 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202212/rohit_sharma-sixteen_nine.png?size=948:533',
-      city: 'georgia',
-      address: 'Cecilia Chapman 711-2880 Nulla St.Mankato Mississippi 96522(257) 563-7401',
-      state: 'Maharashtra'
-    }
-  ]);
+  const [AllInventoryManagers, setAllInventoryManagers] = useState([]);
 
   const getInventoryManagers = async () => {
     const response = await fetch(`https://agrocart.onrender.com/api/invman/`, {
@@ -36,9 +25,30 @@ const InventoryDetails = () => {
     setAllInventoryManagers(json);
   }
 
+  const [deletehook, setdeletehook] = useState(false)
+
+
+  const onDelete = (id, event) => {
+    event.preventDefault();
+    axios.delete(`https://agrocart.onrender.com/api/invman/${id}`)
+      .then((response) => {
+        console.log(response);
+        console.log('\ndeleted');
+        setdeletehook(!deletehook);
+      })
+      .catch((error) => console.log(error))
+  }
+
+
+
   useEffect(() => {
     getInventoryManagers();
   }, []);
+
+  useEffect(() => {
+    getInventoryManagers();
+  }, [deletehook]);
+  
 
   return (
     <div className={AllInventoryManagers.length<10?"queue-page h-screen border-2 rounded-md bg-tailtertiary m-0":"queue-page border-2 rounded-md bg-tailtertiary m-0"}>
@@ -56,7 +66,7 @@ const InventoryDetails = () => {
             <div className="btn flex m-0 p-0">
               <Modal btnname="DETAILS" compinfo={<ViewSingleRole obj={e} role="Inventory Manager" />} />
               <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-tailtertiary3 text-black" onClick={() => navigate("/dashboard/editinventorymanager", { state: { obj: { e } } })}>EDIT</button>
-              <Modal btnname="DELETE" compinfo={<><h2 className="text-red-600 text-xl font-bold font-poppins">Are you sure you want to delete this Inventory Manager??</h2></>} />
+              <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-red-500 text-black" onClick={(event) => onDelete(e.id, event)}>DELETE</button>
             </div>
           </div>
         ))}

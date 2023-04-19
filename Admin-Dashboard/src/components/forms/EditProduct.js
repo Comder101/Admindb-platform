@@ -21,7 +21,7 @@ export default function EditProduct() {
     ])
 
     const getCatArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/category/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export default function EditProduct() {
     ])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/subcategory/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,14 +50,14 @@ export default function EditProduct() {
     }
 
     const [brandarray, setbrandarray] = useState([
-        { id: 1, brand: 'ParleG' },
-        { id: 2, brand: 'Amul' },
-        { id: 3, brand: 'Yash' },
-        { id: 4, brand: 'Palekar' },
+        // { id: 1, brand: 'ParleG' },
+        // { id: 2, brand: 'Amul' },
+        // { id: 3, brand: 'Yash' },
+        // { id: 4, brand: 'Palekar' },
     ])
 
     const getBrandArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/brand/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,14 +68,14 @@ export default function EditProduct() {
     }
 
     const [uomarray, setuomarray] = useState([
-        { id: 1, uom: "gm" },
-        { id: 2, uom: "kg" },
-        { id: 3, uom: "ml" },
-        { id: 4, uom: "ltr" },
+        // { id: 1, uom: "gm" },
+        // { id: 2, uom: "kg" },
+        // { id: 3, uom: "ml" },
+        // { id: 4, uom: "ltr" },
     ])
 
     const getUomArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/uom/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export default function EditProduct() {
     ])
 
     const getOfferArray = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/offer/`, {
+        const response = await fetch(`https://agrocart.onrender.com/api/offer/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -119,11 +119,11 @@ export default function EditProduct() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.subcategory === '' || obj.brand === '' || obj.uom === 0 || obj.offer === '') {
+        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.subcategory === '' || obj.brand === '' || obj.uom === '' || obj.offer === '') {
             alert('Please fill all the fields');
         }
         else {
-            axios.post(`http://localhost:8000/api/product/${oldobj.id}`, {
+            axios.put(`https://agrocart.onrender.com/api/product/${oldobj.id}`, {
                 productname: obj.productname,
                 productprice: obj.productprice,
                 category: obj.category,
@@ -160,7 +160,7 @@ export default function EditProduct() {
 
     useEffect(() => {
         getCatArray();
-        getSubcatArray();
+        // getSubcatArray();
         getBrandArray();
         getUomArray();
         // getOfferArray();
@@ -210,8 +210,11 @@ export default function EditProduct() {
                                 <div className='my-2'>
                                     <label>Brand</label><br />
                                     <select required value={obj.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onChange={onChange}>
-                                        {brandarray.map((b) => (
+                                        {/* {brandarray.map((b) => (
                                             <option key={b.id} value={b.brand}>{b.brand}</option>
+                                        ))} */}
+                                        {brandarray.map((b) => (
+                                            <option key={b.id} value={b.bname}>{b.bname}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -219,7 +222,7 @@ export default function EditProduct() {
                                     <label>Unit of Measurement</label><br />
                                     <select required value={obj.uom} className='mt-1 border px-2 py-2 w-full rounded-md' name="uom" onChange={onChange}>
                                         {uomarray.map((b) => (
-                                            <option key={b.id} value={b.uom}>{b.uom}</option>
+                                            <option key={b.id} value={b.name}>{b.name}</option>
                                         ))}
                                     </select>
                                 </div>
