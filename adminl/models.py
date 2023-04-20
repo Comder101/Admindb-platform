@@ -142,6 +142,7 @@ class Product(models.Model):
     brand=models.CharField(max_length=50,default="PARLEG")
     uom=models.CharField(max_length=50,default="abc")
     offer=models.CharField(max_length=10,default='20%')
+    quantity= models.IntegerField(default=10)
     #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
 
     @staticmethod
