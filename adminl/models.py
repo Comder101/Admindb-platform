@@ -11,6 +11,7 @@ class adminl(models.Model):
     #to save the data
     def register(self):
         self.save()
+
 class Category(models.Model):
 
     allowed= models.BooleanField(default=False)
@@ -44,12 +45,11 @@ class Customer(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     address= models.CharField(max_length=250, default='', blank=True, null= True)
     pin = models.CharField(max_length=10,default='000000')
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
 
     #to save the data
     def register(self):
@@ -66,12 +66,12 @@ class Vendor(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    agentimage= models.ImageField(upload_to='uploads/vendors/',null=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    #image= models.ImageField(upload_to='uploads/vendors/')
+    
 
 
     #to save the data
@@ -83,12 +83,12 @@ class DelivPart(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    agentimage= models.ImageField(upload_to='uploads/delivpar/',null=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    #image= models.ImageField(upload_to='uploads/vendors/')
+   
 
 
     #to save the data
@@ -100,13 +100,12 @@ class FinManager(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    agentimage= models.ImageField(upload_to='uploads/finman/',null=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    #image= models.ImageField(upload_to='uploads/vendors/')
-
+    
 
     #to save the data
     def register(self):
@@ -117,13 +116,12 @@ class Invman(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    agentimage= models.ImageField(upload_to='uploads/invman/',null=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    #image= models.ImageField(upload_to='uploads/vendors/')
-
+    
 
     #to save the data
     def register(self):
@@ -132,7 +130,7 @@ class Invman(models.Model):
     
 class Brand(models.Model):
     bname=models.CharField(max_length=50, default="Nike")
-    #vendors= models.ForeignKey(Vendor,on_delete=models.CASCADE,default=1 )
+    vendors= models.ForeignKey(Vendor,on_delete=models.CASCADE,default=1 )
 
 class Product(models.Model):
     productname = models.CharField(max_length=60,default="coldr")
@@ -143,7 +141,7 @@ class Product(models.Model):
     uom=models.CharField(max_length=50,default="abc")
     offer=models.CharField(max_length=10,default='20%')
     quantity= models.IntegerField(default=10)
-    #agentimage= models.ImageField(upload_to='uploads/customers/',null=True)
+    image= models.ImageField(upload_to='uploads/products/')
 
     @staticmethod
     def get_products_by_id(ids):
