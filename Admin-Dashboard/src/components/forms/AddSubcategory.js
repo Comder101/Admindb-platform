@@ -10,7 +10,7 @@ import Alert from '../Alert';
 export default function AddSubcategory() {
 
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -95,13 +95,13 @@ export default function AddSubcategory() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Add Sub-Category Page" />
-                    <Alert alert={alert} />
+                    <Navbar pagename="Add Sub-Category Page" pagenumber="103" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
                             <form className='w-full mx-auto bg-white p-4' onSubmit={handleSubmit}>
-                                <h2 className='text-center font-bold font-mono text-2xl'>SUB-CATEGORIES</h2>
+                                <h2 className='text-center font-bold font-mono text-2xl'>SUB-CATEGORY</h2>
                                 <hr className='w-56 my-2 border-2 mx-auto' />
 
                                 <div className='flex flex-col py-2'>
@@ -109,7 +109,7 @@ export default function AddSubcategory() {
                                     <select required name="category" value={obj.category} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
                                     <option value="select">Select</option>
                                         {catarray.map((cat) => (
-                                            <option key={cat.id} value={cat.category}>{cat.category}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.category}</option>
                                         ))}
                                     </select>
                                 </div>

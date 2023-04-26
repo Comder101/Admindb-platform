@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
 import Alert from '../Alert';
+import Switch from '../Switch';
 
 
 export default function EditSubCategory() {
 
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -22,20 +23,31 @@ export default function EditSubCategory() {
     }
 
 
-    const [catarray, setcatarray] = useState([
-        { id: 1, category: 'fruits' },
-        { id: 2, category: 'vegetables' },
-        { id: 3, category: 'dairy' },
-        { id: 4, category: 'meat' },
-    ])
+    const [catarray, setcatarray] = useState([])
 
-    const [subcatarray, setsubcatarray] = useState([
-        { id: 1, subcategory: 'apple' },
-        { id: 2, subcategory: 'banana' },
-        { id: 3, subcategory: 'mango' },
-        { id: 4, subcategory: 'orange' },
-    ])
+    const getCatArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setcatarray(json);
+    }
 
+    const [subcatarray, setsubcatarray] = useState([])
+
+    const getSubcatArray = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/subcategory/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setsubcatarray(json);
+    }
 
     const [obj, setobj] = useState({
         category: '',
@@ -43,25 +55,34 @@ export default function EditSubCategory() {
         updatedsubcategory:'',
         color:'',
     })
+    const [isToggled, setisToggled] = useState(false)
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (obj.category === '' || obj.subcategory === '' || obj.updatedsubcategory === '' || obj.color === '') {
-            alert('Please fill all the fields');
+        const m=subcatarray.find(item=>item.subcategory==obj.subcategory);
+        console.log(m)
+        if (obj.category === '' || obj.subcategory === ''||obj.subcategory==='select') {
+            alert("Please fill all the fields");
+            return;
         }
         else{
+            obj.color===""?obj.color="#000000":obj.color=obj.color;
             // put req
-            axios.put(`https://agrocart.onrender.com/api/subcategory/$`,{
-
+            axios.put(`https://agrocart.onrender.com/api/subcategory/${m.id}`,{
+                category: obj.category,
+                subcategory: obj.subcategory,
+                color: obj.color,
+                allowed: isToggled
             })
             .then(res=>{
                 console.log(res.data);
+                setobj({ category: '',updatedsubcategory:'',subcategory:'',color:'' });
                 showAlert('Sub-Category Updated Successfully','success');
             }
             )
             .catch(err=>{
                 console.log(err);
-                // showAlert('Error in Updating Sub-Category','danger');
             }
             )
 
@@ -71,40 +92,56 @@ export default function EditSubCategory() {
 
     const onDiscard=(e)=>{
         e.preventDefault();
-        setobj({ category: '',updatedsubcategory:'',subcategory:'',color:'',productcatallowed:0 });
+        setobj({ category: '',updatedsubcategory:'',subcategory:'',color:'' });
     }
 
     const onChange = (e) => {
         setobj({ ...obj, [e.target.name]: e.target.value });
     }
 
+    const [subcat, setsubcat] = useState([]);
+
+    const nestedChange = (e) => {
+        setobj({ ...obj, [e.target.name]: e.target.value })
+        const m2 = subcatarray.filter(item => item.category == e.target.value);
+        setsubcat(m2);
+    }
+
+
+    useEffect(() => {
+        getCatArray();
+        getSubcatArray();
+    }, [])
+
     return (
         <>
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Edit Sub-Category Page" />
-                    <Alert alert={alert} />
+                    <Navbar pagename="Edit Sub-Category Page" pagenumber="104" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
                             <form className='mx-auto w-full bg-white p-4' onSubmit={handleSubmit}>
-                                <h2 className='text-center font-bold font-mono text-2xl'>SUB-CATEGORIES</h2>
+                                <h2 className='text-center font-bold font-mono text-2xl'>SUB-CATEGORY</h2>
                                 <hr className='w-56 my-2 border-2 mx-auto' />
 
                                 <div className='flex flex-col py-2'>
                                     <label>Choose a Category</label>
-                                    <select required name="category" value={obj.category} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                    <select required name="category" value={obj.category} onChange={nestedChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
+                                    <option value='select'>Select Category</option>
                                         {catarray.map((cat) => (
-                                            <option key={cat.id} value={cat.category}>{cat.category}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.category}</option>
                                         ))}
                                     </select>
                                 </div>
                                 <div className='my-2'>
                                     <label>Subcategory</label><br />
                                     <select required value={obj.subcategory} className='mt-1 border px-2 py-2 w-full rounded-md' name="subcategory" onChange={onChange}>
-                                        {subcatarray.map((subcat) => (
-                                            <option key={subcat.id} value={subcat.subcategory}>{subcat.subcategory}</option>
+                                        <option value='select'>Select Subcategory</option>
+                                        {subcat.map((s) => (
+                                            <option key={s.id} value={s.subcategory}>{s.subcategory}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -120,10 +157,11 @@ export default function EditSubCategory() {
                                 <div className='flex py-2'>
                                     <div className='flex-col justify-center'>
 
-                                        <label className='py-3 font-bold'>Product Allowed : yes no toggle button</label>
+                                        <label className='py-1 mr-2 font-bold'>Product Allowed : </label>
                                     </div>
                                     <div className='flex-col justify-center'>
-                                        <input required value={obj.productcatallowed} type="" name="productcatallowed" id="productcatallowed" />
+                                        <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
+
                                     </div>
                                 </div>
                                 <div className='flex mx-auto mt-2'>

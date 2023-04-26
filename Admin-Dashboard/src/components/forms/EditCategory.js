@@ -4,12 +4,13 @@ import axios from 'axios';
 import '../../App.css';
 import Navbar from '../Navbar';
 import Switch from '../Switch';
+import Alert from '../Alert';
 
 
 
 export default function EditCategory() {
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -52,7 +53,7 @@ export default function EditCategory() {
         }
         else{
             catobj.color===""?catobj.color="#000000":catobj.color=catobj.color; 
-            axios.put(`https://agrocart.onrender.com/api/category/${catobj.category}`,{
+            axios.post(`https://agrocart.onrender.com/api/category/2`,{
                 category:"appleupdate",
                 color:"#11111",
                 allowed:"true"
@@ -89,13 +90,14 @@ export default function EditCategory() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Edit Category Page" />
+                    <Navbar pagename="Edit Category Page" pagenumber="102" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
 
                             <form className='w-full mx-auto p-4' onSubmit={handleSubmit}>
-                                <h2 className='text-center text-2xl'>CATEGORIES</h2>
+                                <h2 className='text-center font-bold font-mono text-2xl'>CATEGORY</h2>
                                 <hr className='mt-2 w-48 border-2 mx-auto' />
                                 <div className='flex flex-col py-2'>
                                     <label>Choose a Category</label>

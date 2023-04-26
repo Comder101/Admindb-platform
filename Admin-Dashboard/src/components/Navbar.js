@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = ({ pagename }) => {
+const Navbar = ({ pagename,pagenumber }) => {
     return (
         <>
 
@@ -15,7 +15,7 @@ const Navbar = ({ pagename }) => {
                     Sustain Ethics B2C Business
                 </div>
                 <div className="w-full text-end font-bold mr-4 ">
-                    ADM 101
+                ADM {pagenumber}
                 </div>
 
             </div>

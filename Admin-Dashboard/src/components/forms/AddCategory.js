@@ -8,7 +8,7 @@ import Alert from '../Alert';
 
 export default function AddCategory() {
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -65,14 +65,14 @@ export default function AddCategory() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Add Category Page" />
-                    <Alert alert={alert} />
+                    <Navbar pagename="Add Category Page" pagenumber="101" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
 
                             <form className='w-full mx-auto p-4' onSubmit={handleSubmit}>
-                                <h2 className='text-center font-bold font-mono text-2xl'>CATEGORIES</h2>
+                                <h2 className='text-center font-bold font-mono text-2xl'>CATEGORY</h2>
                                 <hr className='w-48 mt-2 border-2 mx-auto' />
 
                                 <div className='flex flex-col justify-center'>

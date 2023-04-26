@@ -8,7 +8,7 @@ const VendorPage = () => {
   return (
     <div className="container">
       <div className="main m-0 p-0 bg-tailtertiary">
-        <Navbar pagename="View Vendors Page" />
+        <Navbar pagename="View Vendors Page" pagenumber="125" />
         <VendorDetails />
       </div>
     </div>

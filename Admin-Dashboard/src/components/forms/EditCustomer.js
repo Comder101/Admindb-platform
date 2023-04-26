@@ -77,7 +77,7 @@ export default function EditCustomer() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Edit Customer Page" />
+                    <Navbar pagename="Edit Customer Page" pagenumber="121" />
                     <div className='mt-4 items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
@@ -133,7 +133,7 @@ export default function EditCustomer() {
                                 <div className='flex mx-auto mt-2'>
 
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>
-                                    <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={onDiscard}>DISCARD</button>
+                                    <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={()=>navigate('/dashboard/viewcustomers')}>DISCARD</button>
                                 </div>
                             </form>
                         </div>

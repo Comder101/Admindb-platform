@@ -48,7 +48,7 @@ const ViewSingleRole = (props) => {
       <Container className='bg-tailtertiary m-3'>
         <div className='flex-col mx-4'>
 
-          <Image className='rounded-lg max-w-md mx-auto border-2 border-black' src={obj.agentimage} alt="image" />
+          <Image className='rounded-lg max-w-md mx-auto border-2 border-black' src={`${obj.agentimage}`} alt="image" />
           <div className="flex ">
             <p className='px-3 mx-auto py-1 border-2 border-blue-500 bg-tailtertiary3 rounded-md'>{role}</p>
           </div>

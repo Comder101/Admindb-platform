@@ -40,10 +40,24 @@ const ProductDetails = () => {
       .catch((error) => console.log(error))
   }
 
+  const [catarray, setcatarray] = React.useState([]);
+  const getCatArray = async () => {
+    const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const json = await response.json();
+    setcatarray(json);
+  }
+
+
 
 
   useEffect(() => {
     getProducts();
+    getCatArray();
   }, []);
 
   useEffect(() => {
@@ -66,7 +80,7 @@ const ProductDetails = () => {
             <h2>Product #{e.id}</h2>
             <p>{e.productname}</p>
             <div className="btn flex m-0 p-0">
-              <Modal btnname="DETAILS" compinfo={<ViewSingleProduct obj={e} />} />
+              <Modal btnname="DETAILS" compinfo={<ViewSingleProduct obj={e} catarray={catarray} />} />
               <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-tailtertiary3 text-black" onClick={() => navigate("/dashboard/editproduct", { state: { obj: { e } } })}>EDIT</button>
               <button className="font-poppins font-bold border-2 w-full mr-2 mt-2 mb-2 px-3 rounded-md py-2 bg-tailtertiary hover:bg-red-500 text-black" onClick={(event) => onDelete(e.id, event)}>DELETE</button>
             </div>

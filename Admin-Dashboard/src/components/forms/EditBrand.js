@@ -9,7 +9,7 @@ import Alert from '../Alert';
 
 export default function EditBrand() {
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -21,19 +21,21 @@ export default function EditBrand() {
         }, 2000);
     }
 
-    const [vendorarray, setvendorarray] = useState([
-        { id: 1, brand: 'Vendor1' },
-        { id: 2, brand: 'Vendor2' },
-        { id: 3, brand: 'Vendor3' },
-        { id: 4, brand: 'Vendor4' },
-    ])
+    const [vendorarray, setvendorarray] = useState([])
 
-    const [brandarray, setbrandarray] = useState([
-        { id: 1, brand: 'Brand1' },
-        { id: 2, brand: 'Brand2' },
-        { id: 3, brand: 'Brand3' },
-        { id: 4, brand: 'Brand4' },
-    ])
+    const getVendors = async () => {
+        const response = await fetch(`https://agrocart.onrender.com/api/vendor/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        setvendorarray(json);
+    }
+
+
+    const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
         const response = await fetch(`https://agrocart.onrender.com/api/brand/`, {
@@ -56,10 +58,13 @@ export default function EditBrand() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (obj.productname === '' || obj.newproductname === '' || obj.brand === '') {
-        //     alert('Please fill all the fields');
-        // }
-        axios.put(`https://agrocart.onrender.com/api/brand/${obj.oldbrand}`,{
+        if(obj.oldbrand===''||obj.vendorname===''||obj.newbrand===''||obj.oldbrand==='select'||obj.vendorname==='select'){
+            alert("Please fill all the fields");
+            return;
+        }
+        else{
+            console.log(obj.oldbrand)
+            axios.put(`https://agrocart.onrender.com/api/brand/${obj.oldbrand}`,{
                 bname:obj.newbrand,
             })
             .then((response) => {
@@ -73,7 +78,8 @@ export default function EditBrand() {
 
             })
             .catch((error) => console.log(error))
-        console.log(obj);
+            console.log(obj);
+        }
     }
 
     const onDiscard = (e) => {
@@ -91,7 +97,8 @@ export default function EditBrand() {
 
     useEffect(() => {
         getBrandArray();
-        console.log(brandarray)
+        getVendors();
+        // console.log(brandarray)
     }, [])
     
 
@@ -100,8 +107,8 @@ export default function EditBrand() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Edit Brand Page" />
-                    <Alert alert={alert} />
+                    <Navbar pagename="Edit Brand Page" pagenumber="106" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
@@ -125,9 +132,9 @@ export default function EditBrand() {
                                 <div className='flex flex-col py-2'>
                                     <label>Select Brand Vendor</label>
                                     <select required name="vendorname" value={obj.vendorname} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
-                                        <select value="select">Select</select>
+                                        <option value="select">Select</option>
                                         {vendorarray.map((cat) => (
-                                            <option key={cat.id} value={cat.brand}>{cat.brand}</option>
+                                            <option key={cat.id} value={cat.firstname}>{cat.firstname}</option>
                                         ))}
                                     </select>
                                 </div>

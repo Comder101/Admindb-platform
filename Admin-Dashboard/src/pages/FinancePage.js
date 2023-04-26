@@ -10,7 +10,7 @@ const FinancePage = () => {
     return (
         <div className="container">
             <div className="main m-0 p-0 bg-tailtertiary">
-                <Navbar pagename="Finance Manager Page"/>
+                <Navbar pagename="Finance Manager Page" pagenumber="124"/>
                 <FinanceDetails/>
             </div>
         </div>

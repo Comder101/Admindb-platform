@@ -4,7 +4,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&family=Poppins:wght@100;200;400;700&family=Roboto:wght@100;400;700&display=swap");
 
 
-
+.form-error{
+  color: red;
+  font-weight: 400;
+}
 .modal-wrapper{
     position: fixed;
     left: 0;

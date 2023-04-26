@@ -174,7 +174,7 @@ export default function EditProduct() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Edit Product Page" />
+                    <Navbar pagename="Edit Product Page" pagenumber="110" />
                     <div className='items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>

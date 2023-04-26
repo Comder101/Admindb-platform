@@ -8,7 +8,7 @@ import Alert from '../Alert';
 
 export default function AddBrand() {
 
-    const [alert, setAlert] = useState(null)
+    const [alertval, setAlert] = useState(null)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -94,8 +94,8 @@ export default function AddBrand() {
             <div className="container">
                 <div className="main m-0 p-0 bg-tailtertiary">
 
-                    <Navbar pagename="Add Brand Page" />
-                    <Alert alert={alert} />
+                    <Navbar pagename="Add Brand Page" pagenumber="105" />
+                    <Alert alert={alertval} />
                     <div className='h-screen items-center flex pb-32'>
 
                         <div style={{ width: "800px" }} className='mt-4 bg-white border border-2 rounded-md resize-x mx-auto flex shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
@@ -112,7 +112,7 @@ export default function AddBrand() {
                                     <select required name="bvendors" value={obj.bvendors} onChange={onChange} className='border px-2 py-2 mt-1 w-full rounded-md'>
                                     <option value="select">Select</option>
                                         {vendorarray.map((cat) => (
-                                            <option key={cat.id} value={cat.firstname}>{cat.firstname}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.firstname}</option>
                                         ))}
                                     </select>
                                 </div>
