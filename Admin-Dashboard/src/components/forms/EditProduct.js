@@ -2,8 +2,10 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import '../../App.css';
 import Navbar from '../Navbar';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useFormik } from "formik";
+import { ProductSchema } from './Schemas.js';
 
 
 
@@ -11,18 +13,13 @@ export default function EditProduct() {
 
 
     const location = useLocation();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     let oldobj = location.state.obj.e;
 
-    const [catarray, setcatarray] = useState([
-        { id: 1, category: 'fruits' },
-        { id: 2, category: 'vegetables' },
-        { id: 3, category: 'dairy' },
-        { id: 4, category: 'meat' },
-    ])
+    const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,15 +29,10 @@ export default function EditProduct() {
         setcatarray(json);
     }
 
-    const [subcatarray, setsubcatarray] = useState([
-        { id: 1, subcategory: 'apple' },
-        { id: 2, subcategory: 'banana' },
-        { id: 3, subcategory: 'mango' },
-        { id: 4, subcategory: 'orange' },
-    ])
+    const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,15 +42,10 @@ export default function EditProduct() {
         setsubcatarray(json);
     }
 
-    const [brandarray, setbrandarray] = useState([
-        // { id: 1, brand: 'ParleG' },
-        // { id: 2, brand: 'Amul' },
-        // { id: 3, brand: 'Yash' },
-        // { id: 4, brand: 'Palekar' },
-    ])
+    const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/brand/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,15 +55,10 @@ export default function EditProduct() {
         setbrandarray(json);
     }
 
-    const [uomarray, setuomarray] = useState([
-        // { id: 1, uom: "gm" },
-        // { id: 2, uom: "kg" },
-        // { id: 3, uom: "ml" },
-        // { id: 4, uom: "ltr" },
-    ])
+    const [uomarray, setuomarray] = useState([])
 
     const getUomArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/uom/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -95,7 +77,7 @@ export default function EditProduct() {
     ])
 
     const getOfferArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/offer/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/offer/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -105,70 +87,78 @@ export default function EditProduct() {
         setofferarray(json);
     }
 
-    
 
 
-    const [obj, setobj] = useState({
+
+    const [image, setimage] = useState(null);
+
+    const onImageChange = (e) => {
+        console.log(e.target.files);
+        setimage(e.target.files[0]);
+    }
+    const initialValues = {
         productname: oldobj.productname,
         productprice: oldobj.productprice,
         category: oldobj.category,
         subcategory: oldobj.subcategory,
         brand: oldobj.brand,
         uom: oldobj.uom,
-        offer: oldobj.offer
-    })
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (obj.productname === '' || obj.productprice === 0 || obj.category === '' || obj.category === 'select' || obj.subcategory === '' || obj.subcategory === 'select' || obj.brand === '' || obj.brand === 'select' || obj.uom === '' || obj.uom === 'select' || obj.offer === '' || obj.offer === 'select') {
-            alert("Please fill all the fields");
-            return;
-        }
-        else {
-            axios.put(`https://agrocart.onrender.com/api/product/${oldobj.id}`, {
-                productname: obj.productname,
-                productprice: obj.productprice,
-                category: obj.category,
-                subcategory: obj.subcategory,
-                brand: obj.brand,
-                uom: obj.uom,
-                offer: obj.offer,
-            })
-                .then((response) => {
-                    console.log(response);
-                    navigate("/dashboard/viewproducts")
-                })
-                .catch((error) => console.log(error))
-        }
-        console.log(obj);
+        offer: oldobj.offer,
     }
 
-    const onDiscard = (e) => {
-        e.preventDefault();
-        setobj({
-            productname: '',
-            productprice: 0,
-            category: '',
-            subcategory: '',
-            brand: '',
-            uom: '',
-            offer: ''
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+        useFormik({
+            initialValues,
+            validationSchema: ProductSchema,
+            onSubmit: (values, action) => {
+                console.log(
+                    "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
+                    values
+                );
+                action.resetForm();
+                navigate('/dashboard/viewproducts');
+                setimage(null);
+                handlereq();
+            },
         });
-    }
 
-    const onChange = (e) => {
-        setobj({ ...obj, [e.target.name]: e.target.value });
+    const handlereq = (e) => {
+
+        const formData = new FormData();
+        formData.append('productname', values.productname);
+        formData.append('productprice', values.productprice);
+        formData.append('category', values.category);
+        formData.append('subcategory', values.subcategory);
+        formData.append('brand', values.brand);
+        formData.append('uom', values.uom);
+        formData.append('offer', values.offer);
+        formData.append('image', image);
+        formData.append('quantity', 10);
+
+        axios.put(`https://admindb.onrender.com/api/product/${oldobj.id}`, formData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => console.log("Error : \n" + error))
     }
 
 
     useEffect(() => {
         getCatArray();
-        // getSubcatArray();
+        getSubcatArray();
         getBrandArray();
         getUomArray();
         // getOfferArray();
     }, [])
 
+    // let m = [{}];
+    const [subcat, setsubcat] = useState([]);
+
+    const nestedChange = (e) => {
+        handleChange(e);
+        const m2 = subcatarray.filter(item => item.category == e.target.value);
+        setsubcat(m2);
+    }
     return (
         <>
             <div className="container">
@@ -184,72 +174,94 @@ export default function EditProduct() {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Product Name</label>
-                                    <input required value={obj.productname} className='mt-1 border p-2 rounded-md' type="text" name='productname' placeholder='Enter Product Name' onChange={onChange} />
+                                    <input required value={values.productname} className='mt-1 border p-2 rounded-md' type="text" name='productname' placeholder='Enter Product Name' onBlur={handleBlur} onChange={handleChange} />
+                                    {errors.productname && touched.productname ? (
+                                        <p className="form-error">{errors.productname}</p>
+                                    ) : null}
                                 </div>
+
 
 
                                 <div className='flex flex-col py-2'>
                                     <label>Product Price</label>
-                                    <input required value={obj.productprice} className='mt-1 border p-2 rounded-md' type="number" name='productprice' placeholder='Enter Product Price' onChange={onChange} />
+                                    <input required value={values.productprice} className='mt-1 border p-2 rounded-md' type="number" name='productprice' placeholder='Enter Product Price' onBlur={handleBlur} onChange={nestedChange} />
+                                    {errors.productprice && touched.productprice ? (
+                                        <p className="form-error">{errors.productprice}</p>
+                                    ) : null}
                                 </div>
 
 
                                 <div>
                                     <label>Category</label><br />
-                                    <select required value={obj.category} className='mt-1 border px-2 py-2 w-full rounded-md' name="category" onChange={onChange}>
-                                    {/* <option value='select'>select</option> */}
+                                    <select required value={values.category} className='mt-1 border px-2 py-2 w-full rounded-md' name="category" onBlur={handleBlur} onChange={nestedChange} >
+                                        <option value='select'>select</option>
                                         {catarray.map((cat) => (
-                                            <option key={cat.id} value={cat.category}>{cat.category}</option>
+                                            <option key={cat.id} value={cat.id}>{cat.category}</option>
                                         ))}
                                     </select>
+                                    {errors.category && touched.category ? (
+                                        <p className="form-error">{errors.category}</p>
+                                    ) : null}
                                 </div>
                                 <div className='my-2'>
                                     <label>Subcategory</label><br />
-                                    <select required value={obj.subcategory} className='mt-1 border px-2 py-2 w-full rounded-md' name="subcategory" onChange={onChange}>
-                                    {/* <option value='select'>select</option> */}
-                                    {subcatarray.map((subcat) => (
-                                            <option key={subcat.id} value={subcat.subcategory}>{subcat.subcategory}</option>
+                                    <select required value={values.subcategory} className='mt-1 border px-2 py-2 w-full rounded-md' name="subcategory" onBlur={handleBlur} onChange={handleChange} >
+                                        <option value='select'>select</option>
+                                        {subcat.map((s) => (
+                                            <option key={s.id} value={s.subcategory}>{s.subcategory}</option>
                                         ))}
                                     </select>
+                                    {errors.subcategory && touched.subcategory ? (
+                                        <p className="form-error">{errors.subcategory}</p>
+                                    ) : null}
                                 </div>
                                 <div className='my-2'>
                                     <label>Brand</label><br />
-                                    <select required value={obj.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onChange={onChange}>
-                                    {/* <option value='select'>select</option> */}
+                                    <select required value={values.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onBlur={handleBlur} onChange={handleChange} >
+                                        <option value='select'>select</option>
                                         {brandarray.map((b) => (
                                             <option key={b.id} value={b.bname}>{b.bname}</option>
                                         ))}
                                     </select>
+                                    {errors.brand && touched.brand ? (
+                                        <p className="form-error">{errors.brand}</p>
+                                    ) : null}
                                 </div>
                                 <div className='my-2'>
-                                    <label>Unit of Measurement</label><br />
-                                    <select required value={obj.uom} className='mt-1 border px-2 py-2 w-full rounded-md' name="uom" onChange={onChange}>
-                                    {/* <option value='select'>select</option> */}
-                                    {uomarray.map((b) => (
+                                    <label>UMO(Kg's)</label><br />
+                                    <select required value={values.uom} className='mt-1 border px-2 py-2 w-full rounded-md' name="uom" onBlur={handleBlur} onChange={handleChange} >
+                                        <option value='select'>select</option>
+                                        {uomarray.map((b) => (
                                             <option key={b.id} value={b.name}>{b.name}</option>
                                         ))}
                                     </select>
+                                    {errors.uom && touched.uom ? (
+                                        <p className="form-error">{errors.uom}</p>
+                                    ) : null}
                                 </div>
                                 <div className='my-2'>
                                     <label>Offer</label><br />
-                                    <select required value={obj.offer} className='mt-1 border px-2 py-2 w-full rounded-md' name="offer" onChange={onChange}>
-                                    {/* <option value='select'>select</option> */}
-                                    {offerarray.map((b) => (
+                                    <select required value={values.offer} className='mt-1 border px-2 py-2 w-full rounded-md' name="offer" onBlur={handleBlur} onChange={handleChange} >
+                                        <option value='select'>select</option>
+                                        {offerarray.map((b) => (
                                             <option key={b.id} value={b.offer}>{b.offer}</option>
                                         ))}
                                     </select>
                                 </div>
+                                {errors.offer && touched.offer ? (
+                                    <p className="form-error">{errors.offer}</p>
+                                ) : null}
 
 
                                 <div className='flex flex-col py-2'>
                                     <label>Upload Product Image</label>
-                                    <input required className='mt-1 border p-2 rounded-md' type="file" value={obj.productimage} name="productimage" onChange={onChange} />
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
 
                                 <div className='flex mx-auto mt-2'>
 
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>
-                                    <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={onDiscard}>DISCARD</button>
+                                    <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={()=>navigate('/dashboard/viewproducts')}>DISCARD</button>
                                 </div>
 
                             </form>

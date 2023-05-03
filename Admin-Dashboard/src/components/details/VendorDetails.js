@@ -18,7 +18,7 @@ const VenodrDetails = () => {
 
    // getVendors api
    const getVendors = async () => {
-    const response = await fetch(`https://agrocart.onrender.com/api/vendor/`, {
+    const response = await fetch(`https://admindb.onrender.com/api/vendor/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const VenodrDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://agrocart.onrender.com/api/vendor/${id}`)
+    axios.delete(`https://admindb.onrender.com/api/vendor/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
@@ -63,7 +63,7 @@ const VenodrDetails = () => {
 
                     {AllVendors.map((e) => (
                         <div key={e.id} className="order-card link hover:transition-all bg-white duration-300 ease-in-out font-poppins font-bold m-0 px-2 py-0">
-                            <h2>Employee #{e.id}</h2>
+                            <h2>Vendor #{e.id}</h2>
                             <p>{e.firstname+" "+e.lastname}</p>
                             <div className="btn flex m-0 p-0">
                                 <Modal btnname="DETAILS" compinfo={<ViewSingleRole obj={e} role="Vendor"/>} />

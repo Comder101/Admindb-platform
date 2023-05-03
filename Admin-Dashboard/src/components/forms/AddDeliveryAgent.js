@@ -66,7 +66,7 @@ export default function AddDeliveryAgent() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://agrocart.onrender.com/api/delivpar/", formData)
+        axios.post("https://admindb.onrender.com/api/delivpar/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Delivery Agent Added Successfully", "success")

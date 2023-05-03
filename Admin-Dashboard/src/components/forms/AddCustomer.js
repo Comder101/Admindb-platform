@@ -60,7 +60,7 @@ export default function AddCustomer() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://agrocart.onrender.com/api/customer/", {
+        axios.post("https://admindb.onrender.com/api/customer/", {
             firstname: values.firstname,
             lastname: values.lastname,
             email: values.email,
@@ -68,7 +68,7 @@ export default function AddCustomer() {
             city: values.city,
             address: values.address,
             pin: values.pin,
-            // agentimage: formData
+            agentimage: formData
         })
             .then((response) => {
                 console.log(response);
@@ -141,7 +141,7 @@ export default function AddCustomer() {
                                 </div>
 
                                 <div className='flex flex-col py-2'>
-                                    <label>Upload Delivery Agent Image</label>
+                                    <label>Upload Image</label>
                                     <input required className='mt-1 border p-2 rounded-md' type="file" name="agentimage" onChange={onImageChange} />
                                 </div>
 

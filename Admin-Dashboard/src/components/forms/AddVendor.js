@@ -61,7 +61,7 @@ export default function AddVendor() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://agrocart.onrender.com/api/vendor/", {
+        axios.post("https://admindb.onrender.com/api/vendor/", {
             firstname: values.firstname,
             lastname: values.lastname,
             email: values.email,

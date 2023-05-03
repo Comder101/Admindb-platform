@@ -26,7 +26,7 @@ export default function EditSubCategory() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export default function EditSubCategory() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default function EditSubCategory() {
         else{
             obj.color===""?obj.color="#000000":obj.color=obj.color;
             // put req
-            axios.put(`https://agrocart.onrender.com/api/subcategory/${m.id}`,{
+            axios.put(`https://admindb.onrender.com/api/subcategory/${m.id}`,{
                 category: obj.category,
                 subcategory: obj.subcategory,
                 color: obj.color,

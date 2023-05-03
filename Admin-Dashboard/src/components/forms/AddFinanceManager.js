@@ -61,7 +61,7 @@ export default function AddFinanceanager() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://agrocart.onrender.com/api/finman/", {
+        axios.post("https://admindb.onrender.com/api/finman/", {
             firstname: values.firstname,
             lastname: values.lastname,
             email: values.email,

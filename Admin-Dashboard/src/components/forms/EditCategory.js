@@ -31,7 +31,7 @@ export default function EditCategory() {
     ])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function EditCategory() {
         }
         else{
             catobj.color===""?catobj.color="#000000":catobj.color=catobj.color; 
-            axios.post(`https://agrocart.onrender.com/api/category/2`,{
+            axios.post(`https://admindb.onrender.com/api/category/2`,{
                 category:"appleupdate",
                 color:"#11111",
                 allowed:"true"

@@ -17,7 +17,7 @@ const FinanceDetails = () => {
 
   // getFinanceManager api
   const getFinanceManager = async () => {
-    const response = await fetch(`https://agrocart.onrender.com/api/finman/`, {
+    const response = await fetch(`https://admindb.onrender.com/api/finman/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const FinanceDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://agrocart.onrender.com/api/finman/${id}`)
+    axios.delete(`https://admindb.onrender.com/api/finman/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
@@ -63,7 +63,7 @@ const FinanceDetails = () => {
         </div>
         {AllFinanceManagers.map((e) => (
           <div key={e.id} className="order-card link hover:transition-all bg-white duration-300 ease-in-out font-poppins font-bold m-0 px-2 py-0">
-            <h2>Manager #{e.id}</h2>
+            <h2>FinManager #{e.id}</h2>
             <p>{e.firstname+" "+e.lastname}</p>
             <div className="btn flex m-0 p-0">
               <Modal btnname="DETAILS" compinfo={<ViewSingleRole obj={e} role="Finance Manager"/>}/>

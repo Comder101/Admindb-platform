@@ -35,7 +35,7 @@ export default function AddCategory() {
         }
         else{    
             catobj.color===""?catobj.color="#000000":catobj.color=catobj.color; 
-            axios.post("https://agrocart.onrender.com/api/category/",{
+            axios.post("https://admindb.onrender.com/api/category/",{
                 category:catobj.category,
                 color:catobj.color,
                 allowed:isToggled

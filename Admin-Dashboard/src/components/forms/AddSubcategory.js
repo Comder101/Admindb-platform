@@ -31,7 +31,7 @@ export default function AddSubcategory() {
     ])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function AddSubcategory() {
         else {
 
             obj.color===""?obj.color="#000000":obj.color=obj.color;
-            axios.post("https://agrocart.onrender.com/api/subcategory/", {
+            axios.post("https://admindb.onrender.com/api/subcategory/", {
                 category: obj.category,
                 subcategory: obj.subcategory,
                 color: obj.color,

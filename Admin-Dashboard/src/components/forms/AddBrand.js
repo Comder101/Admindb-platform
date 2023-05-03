@@ -28,7 +28,7 @@ export default function AddBrand() {
     ])
 
     const getVendors = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/vendor/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/vendor/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export default function AddBrand() {
         else {
 
 
-            axios.post("https://agrocart.onrender.com/api/brand/", {
+            axios.post("https://admindb.onrender.com/api/brand/", {
                 bname: obj.productname,
                 vendors: obj.bvendors,
             })

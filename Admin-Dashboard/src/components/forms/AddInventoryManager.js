@@ -60,7 +60,7 @@ export default function AddInventoryManager() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://agrocart.onrender.com/api/invman/", {
+        axios.post("https://admindb.onrender.com/api/invman/", {
             firstname: values.firstname,
             lastname: values.lastname,
             email: values.email,

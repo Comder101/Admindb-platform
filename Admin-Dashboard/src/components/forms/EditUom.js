@@ -33,7 +33,7 @@ export default function EditUom() {
     })
 
     const getUomArray = async () => {
-        const response = await fetch(`https://agrocart.onrender.com/api/uom/`, {
+        const response = await fetch(`https://admindb.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default function EditUom() {
             alert('Please fill all the fields');
         }
         else{
-            axios.put(`https://agrocart.onrender.com/api/uom/${obj.uom}`,{
+            axios.put(`https://admindb.onrender.com/api/uom/${obj.uom}`,{
                 name:obj.updateduom,
             })
             .then((response) => {

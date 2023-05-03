@@ -34,7 +34,7 @@ export default function EditDeliveryAgent() {
             alert('Please fill all the fields');
         }
         else {
-            axios.put(`https://agrocart.onrender.com/api/delivpar/${oldobj.id}`, {
+            axios.put(`https://admindb.onrender.com/api/delivpar/${oldobj.id}`, {
                 firstname: obj.firstname,
                 lastname: obj.lastname,
                 email: obj.email,
@@ -134,7 +134,7 @@ export default function EditDeliveryAgent() {
                                 <div className='flex mx-auto mt-2'>
 
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>
-                                    <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={onDiscard}>DISCARD</button>
+                                    <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={()=>navigate('/dashboard/viewdeliveryagents')}>DISCARD</button>
                                 </div>
                             </form>
                         </div>
