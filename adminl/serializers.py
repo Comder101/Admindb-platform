@@ -57,3 +57,4 @@ class AdminlSerializer(serializers.ModelSerializer):
         model = adminl
         fields = '__all__'
 
+

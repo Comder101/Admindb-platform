@@ -20,4 +20,5 @@ admin.site.register(Invman)
 admin.site.register(FinManager)
 admin.site.register(Brand)
 admin.site.register(adminl)
+
 # Register your models here.

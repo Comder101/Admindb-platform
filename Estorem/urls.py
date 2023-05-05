@@ -23,6 +23,7 @@ urlpatterns = [
     path('',views.index,name="admindb"),
     # path('invm',views.invm,name="inventory-manager"),
     path('admin/', admin.site.urls),
+    re_path(r'^api/adminlog/$', views.adminl_list),
     re_path(r'^api/customer/$', views.custm_list),
     re_path(r'^api/customer/([0-9])$', views.custm_detail),
     path('manifest.json', TemplateView.as_view(template_name='manifest.json', content_type='application/json'), name='manifest.json'),
