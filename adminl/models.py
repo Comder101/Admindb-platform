@@ -158,8 +158,8 @@ class Product(models.Model):
         
 class adminl(models.Model):
  
-    username = models.CharField(max_length=50,default='adminp')
-    password = models.CharField(max_length=50,default='passw123')
+    username = models.CharField(max_length=50,default='admin07')
+    password = models.CharField(max_length=50,default='test1234')
 
 
     #to save the data

@@ -364,7 +364,7 @@ def finman_detail(request, pk):
 
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def adminl_list(request):
     if request.method == 'GET':
         data = adminl.objects.all()
