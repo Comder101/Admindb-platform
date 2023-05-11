@@ -18,10 +18,10 @@ const SideBar = ({ children }) => {
         <div className="main-container">
           <motion.div
             animate={{
-              width: "280px",
-              height:"h-screen",
+              width: "290px",
+              height: "h-screen",
             }}
-            className={`sidebar `}
+            className={`sidebar pr-4`}
           >
             <div className="top_section">
               <h2 className="py-8 px-6 w-full border-2 border-blue-500 font-bold rounded-sm text-center bg-tailtertiary3 text-black flex">
@@ -87,7 +87,7 @@ const SideBar = ({ children }) => {
                 </ul>
               </div>
 
-                {/* Subcategory */}
+              {/* Subcategory */}
               <div className="dropdown">
                 <button
                   className="btnclass btn-secondary dropdown-toggle"
@@ -120,7 +120,7 @@ const SideBar = ({ children }) => {
               </div>
 
 
-                {/* Brand */}
+              {/* Brand */}
               <div className="dropdown">
                 <button
                   className="btnclass btn-secondary dropdown-toggle"
@@ -188,242 +188,95 @@ const SideBar = ({ children }) => {
 
 
               {/* Product */}
-              <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Product
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/addproduct"
-                        routename="Add Product"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewproducts"
-                        routename="Edit Product"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
               <MyNavitem
-                path="/dashboard/viewproducts"
-                routename="View Products"
-                icon={<VscPreview />}
+                path="/dashboard/addproduct"
+                routename="Add Product"
+                icon={<GrAddCircle />}
               />
 
+              {/* <MyNavitem
+                path="/dashboard/viewproducts"
+                routename="View/Edit/Delete Products"
+                icon={<VscPreview />}
+              /> */}
 
-               {/* ADD ROLE MENU */}
+
+              {/* ADD ROLE MENU */}
               <h2 className="border-2 border-black justify-center flex  mx-1 py-2 bg-tailtertiary justify-center">
                 Add Role Menu
               </h2>
 
               {/* Delivery Agent */}
-              <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Delivery Agent
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/adddeliveryagent"
-                        routename="Add Delivery Agent"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewdeliveryagents"
-                        routename="Edit Delivery Agent"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
+              <MyNavitem
+                path="/dashboard/adddeliveryagent"
+                routename="Delivery Agent"
+                icon={<GrAddCircle />}
+              />
               {/* Inventory Manager */}
-              <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Inventory Manager
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/addinventorymanager"
-                        routename="Add Inventory Manager"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewinventorymanagers"
-                        routename="Edit Inventory Manager"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              
+              <MyNavitem
+                path="/dashboard/addinventorymanager"
+                routename="Inventory Manager"
+                icon={<GrAddCircle />}
+              />
 
               {/* Vendor */}
-              <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Vendor
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/addvendor"
-                        routename="Add Vendor"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewvendors"
-                        routename="Edit Vendor"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <MyNavitem
+                path="/dashboard/addvendor"
+                routename="Vendor"
+                icon={<GrAddCircle />}
+              />
 
 
               {/* Finance Manager */}
-              <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Finance Manager
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/addfinancemanager"
-                        routename="Add Finance Manager"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewfinancemanagers"
-                        routename="Edit Finance Manager"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <MyNavitem
+                path="/dashboard/addfinancemanager"
+                routename="Finance Manager"
+                icon={<GrAddCircle />}
+              />
+
+              {/* Customer */}
+              <MyNavitem
+                path="/dashboard/addcustomer"
+                routename="Customer"
+                icon={<GrAddCircle />}
+              />
 
 
-            {/* Customer */}
-            <div className="dropdown">
-                <button
-                  className="btnclass btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Customer
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/addcustomer"
-                        routename="Add Customer"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" href="#">
-                      <MyNavitem
-                        path="/dashboard/viewcustomers"
-                        routename="Edit Customer"
-                        icon={<GrAddCircle />}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
 
-              
-              
 
               <h2 className="border-2 border-black justify-center flex  mx-1 py-2 bg-tailtertiary justify-center">
-                View Menu
+                View Edit Delete Menu
               </h2>
               <MyNavitem
+                path="/dashboard/viewproducts"
+                routename="Products"
+                icon={<VscPreview />}
+              />
+              <MyNavitem
                 path="/dashboard/viewdeliveryagents"
-                routename="View Delivery Agents"
+                routename="Delivery Agents"
                 icon={<VscPreview />}
               />
               <MyNavitem
                 path="/dashboard/viewinventorymanagers"
-                routename="View Inventory Managers"
+                routename="Inventory Managers"
                 icon={<VscPreview />}
               />
               <MyNavitem
                 path="/dashboard/viewvendors"
-                routename="View Vendors"
+                routename="Vendors"
                 icon={<VscPreview />}
               />
               <MyNavitem
                 path="/dashboard/viewfinancemanagers"
-                routename="View Finance Managers"
+                routename="Finance Managers"
                 icon={<VscPreview />}
               />
               <MyNavitem
                 path="/dashboard/viewcustomers"
-                routename="View Customers"
+                routename="Customers"
                 icon={<VscPreview />}
+                className=""
               />
             </section>
           </motion.div>

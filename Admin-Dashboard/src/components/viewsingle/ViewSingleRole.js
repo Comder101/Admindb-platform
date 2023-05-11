@@ -39,9 +39,16 @@ const Price = styled.p`
 `;
 
 const ViewSingleRole = (props) => {
-
+  
   const {obj,role}=props;
   console.log(obj);
+
+
+  const state = require('country-state-city').State;
+  const statelist = state.getStatesOfCountry("IN");
+
+  const statename=statelist.find((s)=>s.isoCode===obj.state);
+
   return (
    
 
@@ -59,8 +66,8 @@ const ViewSingleRole = (props) => {
           <h2 className='text-black font-bold border-2 border-blue-500 bg-tailprimary rounded-md text-xl px-3 py-2 mx-2'>{obj.firstname+" "+obj.lastname}</h2>
           <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>Email : {obj.email}</p>
           <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>Contact : {obj.contact} </p>
+          <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>{(obj.state)?"State : "+statename.name:"Pin : "+obj.pin}</p>
           <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>City : {obj.city}</p>
-          <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>{(obj.state)?"State : "+obj.state:"Pin : "+obj.pin}</p>
           <p className='border-2 border-blue-500 px-3 m-2 py-1 bg-tailtertiary3 rounded-md'>Address : {obj.address}</p>
 
         </div>

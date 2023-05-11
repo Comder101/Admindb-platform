@@ -1,67 +1,63 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import '../../App.css';
 import axios from "axios";
-
+import Modal from "../Modal";
 
 export default function AdminLogin({ update, login }) {
     const navigate = useNavigate();
 
     const [userinfo, setuserinfo] = useState({ username: "", password: "" })
 
+    const [cred, setcred] = useState(null)
+
+    const getCred=async()=>{
+        const response = await fetch(`https://admindashb.onrender.com/api/adminlog/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const json = await response.json();
+        console.log(json)
+        setcred(json);
+        console.log(cred)
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         if (userinfo.username === '' || userinfo.password === '') {
             alert('Please fill all the fields');
         }
         else {
-            axios.post('http://127.0.0.1:8000/api/adminl/', {
-                username: userinfo.username,
-                password: userinfo.password
-            })
-            .then((response) => {
-                if (response.data.is_superuser) {
-                    // Redirect to superuser dashboard or do something else
-                    navigate("/dashboard/home");
-                } else {
-                    // Display error message or redirect to regular user dashboard
-                    alert("You are not an admin")
+            console.log(userinfo);
+            cred.map((item) => {
+                if (item.username === userinfo.username && item.password === userinfo.password) {
+                    console.log('login successfull');
+                    navigate('/dashboard/home');
                 }
-            })
-            // .catch((error) => console.log(error))
-            navigate("/dashboard/home");
-
-            // console.log("into else")
+                else{
+                    console.log("invalid cred");
+                    alert('Invalid Cred or Password!!');
+                }
+            });
         }
-        console.log(userinfo);
 
     }
 
+
+    useEffect(() => {
+      getCred();
+    }, [])
+    
 
     const onChange = (e) => {
         setuserinfo({ ...userinfo, [e.target.name]: e.target.value });
     }
 
-    const onLoginSubmit = async (event) => {
-        event.preventDefault();
-        const response = await axios.post('https://agrocart.onrender.com/api/adminl/', {
-            username: userinfo.username,
-            password: userinfo.password
-        });
-        if (response.data.is_superuser) {
-            // Redirect to superuser dashboard or do something else
-            navigate("/dashboard/home");
-        } else {
-            // Display error message or redirect to regular user dashboard
-            alert("You are not an admin")
-        }
-    };
-
     return (
         <div className='w-full'>
             <div className='mt-8 p-8 h-screen mx-auto rounded-lg overflow-hidden'>
-                <div className='border border-2 rounded-md max-w-lg mx-auto justify-center shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
+                <div className=' border-2 rounded-md max-w-lg mx-auto justify-center shadow-[0_20px_50px_rgba(8,_100,_150,_0.5)]'>
                     <form className='w-full mx-auto bg-white p-4' onSubmit={handleSubmit}>
 
                         <h2 className='text-center font-bold font-mono text-2xl'>ADMIN LOGIN</h2>
@@ -69,8 +65,8 @@ export default function AdminLogin({ update, login }) {
 
 
                         <div className='flex flex-col py-2'>
-                            <label>Email</label>
-                            <input required value={userinfo.username} className='mt-1 border p-2 rounded-md' type="username" name='username' placeholder='Enter Email (Username)' onChange={onChange} />
+                            <label>Username</label>
+                            <input required value={userinfo.username} className='mt-1 border p-2 rounded-md' type="username" name='username' placeholder='Enter Username/Email' onChange={onChange} />
                         </div>
 
 

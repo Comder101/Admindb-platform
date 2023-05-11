@@ -2,34 +2,33 @@ import {
   BrowserRouter as Router,
   Route, Routes
 } from "react-router-dom";
-import Modal from 'react-modal';
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 import AdminLogin from './components/forms/AdminLogin';
-import AddDeliveryAgent from './components/forms/AddDeliveryAgent';
-import AddInventoryManager from './components/forms/AddInventoryManager';
-import AddProducts from './components/forms/AddProducts';
+import AddDeliveryAgent from './components/forms/DeliveryAgent/AddDeliveryAgent';
+import AddInventoryManager from './components/forms/InventoryManager/AddInventoryManager';
+import AddProducts from './components/forms/Product/AddProducts';
 import SideBar from './components/SideBar';
-import AddCategory from './components/forms/AddCategory';
-import AddSubcategory from './components/forms/AddSubcategory';
+import AddCategory from './components/forms/Category/AddCategory';
+import AddSubcategory from './components/forms/SubCategory/AddSubcategory';
 import DeliveryPage from './pages/DeliveryPage';
 import InventoryPage from './pages/InventoryPage';
-import EditDeliveryAgent from './components/forms/EditDeliveryAgent';
-import EditInventoryManager from './components/forms/EditInventoryManager';
-import EditProduct from './components/forms/EditProduct';
-import EditCategory from './components/forms/EditCategory';
-import EditSubCategory from './components/forms/EditSubCategory';
-import AddBrand from './components/forms/AddBrand';
-import EditBrand from './components/forms/EditBrand';
-import AddVendor from './components/forms/AddVendor';
-import EditVendor from './components/forms/EditVendor';
-import AddUom from './components/forms/AddUom';
-import EditUom from './components/forms/EditUom';
+import EditDeliveryAgent from './components/forms/DeliveryAgent/EditDeliveryAgent';
+import EditInventoryManager from './components/forms/InventoryManager/EditInventoryManager';
+import EditProduct from './components/forms/Product/EditProduct';
+import EditCategory from './components/forms/Category/EditCategory';
+import EditSubCategory from './components/forms/SubCategory/EditSubCategory';
+import AddBrand from './components/forms/Brand/AddBrand';
+import EditBrand from './components/forms/Brand/EditBrand';
+import AddVendor from './components/forms/Vendor/AddVendor';
+import EditVendor from './components/forms/Vendor/EditVendor';
+import AddUom from './components/forms/Uom/AddUom';
+import EditUom from './components/forms/Uom/EditUom';
 import VendorPage from "./pages/VendorPage";
-import AddFinanceManager from "./components/forms/AddFinanceManager";
-import EditFinanceManager from "./components/forms/EditFinanceManager";
-import AddCustomer from "./components/forms/AddCustomer";
-import EditCustomer from "./components/forms/EditCustomer";
+import AddFinanceManager from "./components/forms/FinanceManager/AddFinanceManager";
+import EditFinanceManager from "./components/forms/FinanceManager/EditFinanceManager";
+import AddCustomer from "./components/forms/Customer/AddCustomer";
+import EditCustomer from "./components/forms/Customer/EditCustomer";
 import CustomerPage from "./pages/CustomerPage";
 import FinancePage from "./pages/FinancePage";
 
@@ -80,8 +79,8 @@ function App() {
             <Route exact path="adduom" element={<AddUom />} />
             <Route exact path="edituom" element={<EditUom />} />
 
-            <Route exact path="viewcustomers" element={<CustomerPage/>} />
-            <Route exact path="viewfinancemanagers" element={<FinancePage/>}/>
+            <Route exact path="viewcustomers" element={<CustomerPage />} />
+            <Route exact path="viewfinancemanagers" element={<FinancePage />} />
           </Route>
 
 
