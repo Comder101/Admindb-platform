@@ -372,6 +372,13 @@ def adminl_list(request):
         serializer = AdminlSerializer(data, context={'request': request}, many=True)
 
         return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = AdminlSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # ,{'products':products})
