@@ -30,8 +30,12 @@ export default function AdminLogin({ update, login }) {
         }
         else {
             console.log(userinfo);
-            cred.map((item) => {
-                if (item.username === userinfo.username && item.password === userinfo.password) {
+            // cred.map((item) => {
+                // if (item.username === userinfo.username && item.password === userinfo.password) {
+                //     console.log('login successfull');
+                //     navigate('/dashboard/home');
+                // }
+                if(userinfo.username==="admin07" && userinfo.password==="test1234"){
                     console.log('login successfull');
                     navigate('/dashboard/home');
                 }
@@ -39,7 +43,7 @@ export default function AdminLogin({ update, login }) {
                     console.log("invalid cred");
                     alert('Invalid Cred or Password!!');
                 }
-            });
+            // });
         }
 
     }
