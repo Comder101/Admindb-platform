@@ -72,8 +72,27 @@ class Vendor(models.Model):
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
+
     
 
+
+    #to save the data
+    def register(self):
+        self.save()
+
+class Invman(models.Model):
+ 
+    firstname = models.CharField(max_length=50,default='Kartik')
+    lastname = models.CharField (max_length=50,default='Singhania')
+    contact = models.CharField(max_length=10)
+    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/invman/',null=True)
+    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
+    city = models.CharField(max_length=50,default='Koregaon')
+    state = models.CharField(max_length=50, default='', blank=True, null= True)
+    address= models.CharField(max_length=250, default='', blank=True, null= True)
+    orderId = models.CharField(max_length=10,null=True,blank=True)
+    
+    
 
     #to save the data
     def register(self):
@@ -89,7 +108,8 @@ class DelivPart(models.Model):
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-   
+    orderId= models.ForeignKey(Invman,on_delete=models.CASCADE,null=True,blank=True )
+
 
 
     #to save the data
@@ -112,21 +132,7 @@ class FinManager(models.Model):
     def register(self):
         self.save()
 
-class Invman(models.Model):
- 
-    firstname = models.CharField(max_length=50,default='Kartik')
-    lastname = models.CharField (max_length=50,default='Singhania')
-    contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/invman/',null=True)
-    email=models.EmailField(max_length=50,default='karsingh@gmail.com')
-    city = models.CharField(max_length=50,default='Koregaon')
-    state = models.CharField(max_length=50, default='', blank=True, null= True)
-    address= models.CharField(max_length=250, default='', blank=True, null= True)
-    
 
-    #to save the data
-    def register(self):
-        self.save()
 
     
 class Brand(models.Model):
