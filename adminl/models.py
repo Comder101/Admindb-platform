@@ -90,7 +90,8 @@ class Invman(models.Model):
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    orderId = models.CharField(max_length=10,null=True,blank=True)
+    orderId= models.CharField(max_length=10, default='abc')
+    
     
     
 
@@ -108,7 +109,8 @@ class DelivPart(models.Model):
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
     address= models.CharField(max_length=250, default='', blank=True, null= True)
-    orderId= models.ForeignKey(Invman,on_delete=models.CASCADE,null=True,blank=True )
+    orderId= models.ForeignKey(Invman,on_delete=models.CASCADE,default=1 )
+    
 
 
 
