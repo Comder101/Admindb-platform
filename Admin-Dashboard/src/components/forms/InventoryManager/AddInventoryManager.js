@@ -34,6 +34,7 @@ export default function AddInventoryManager() {
         lastname: '',
         email: '',
         contact: '',
+        orderId: '',
         state: '',
         city: '',
         address: '',
@@ -67,6 +68,7 @@ export default function AddInventoryManager() {
         formData.append('lastname', values.lastname);
         formData.append('email', values.email);
         formData.append('contact', values.contact);
+        formData.append('orderId', values.orderId);
         formData.append('city', values.city);
         formData.append('address', values.address);
         formData.append('state', values.state);
@@ -87,6 +89,7 @@ export default function AddInventoryManager() {
         values.lastname = '';
         values.email = '';
         values.contact = '';
+        values.orderId = '';
         values.city = '';
         values.address = '';
         values.state = '';
@@ -143,6 +146,14 @@ export default function AddInventoryManager() {
                                     <input value={values.contact} required className='mt-1 border p-2 rounded-md' type="text" name='contact' placeholder='Enter Contact Number' onBlur={handleBlur} onChange={handleChange} />
                                     {errors.contact && touched.contact ? (
                                         <p className="form-error">{errors.contact}</p>
+                                    ) : null}
+                                </div>
+
+                                <div className='flex flex-col py-2'>
+                                    <label>Order Id</label>
+                                    <input value={values.orderId} required className='mt-1 border p-2 rounded-md' type="text" name='contact' placeholder='Enter Order Id' onBlur={handleBlur} onChange={handleChange} />
+                                    {errors.orderId && touched.orderId ? (
+                                        <p className="form-error">{errors.orderId}</p>
                                     ) : null}
                                 </div>
 
