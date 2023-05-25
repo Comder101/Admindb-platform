@@ -18,7 +18,7 @@ const VenodrDetails = () => {
 
    // getVendors api
    const getVendors = async () => {
-    const response = await fetch(`https://admindashb.onrender.com/api/vendor/`, {
+    const response = await fetch(`https://adminz.onrender.com/api/vendor/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const VenodrDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://admindashb.onrender.com/api/vendor/${id}`)
+    axios.delete(`https://adminz.onrender.com/api/vendor/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');

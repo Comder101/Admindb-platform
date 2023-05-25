@@ -20,6 +20,13 @@ export default function AddCategory() {
         }, 2000);
     }
 
+    const [image, setimage] = useState(null);
+
+    const onImageChange = (e) => {
+        console.log(e.target.files);
+        setimage(e.target.files[0]);
+    }
+
 
     const [catobj, setcatobj] = useState({ category: '', color: '' });
     const [isToggled, setisToggled] = useState(false)
@@ -35,11 +42,13 @@ export default function AddCategory() {
         }
         else {
             catobj.color === "" ? catobj.color = "#000000" : catobj.color = catobj.color;
-            axios.post("https://admindashb.onrender.com/api/category/", {
-                category: catobj.category,
-                color: catobj.color,
-                allowed: isToggled
-            })
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('category', catobj.category);
+            formData.append('color', catobj.color);
+            formData.append('allowed', isToggled);
+            console.log(formData);
+            axios.post("https://adminz.onrender.com/api/category/", formData)
                 .then((response) => {
                     showAlert("Category Added Successfully", "success")
                     console.log(response);
@@ -92,6 +101,11 @@ export default function AddCategory() {
 
                                     <label className="mr-4">Subcategory Allowed : </label>
                                     <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
+                                </div>
+
+                                <div className='flex flex-col py-2'>
+                                    <label>Upload Category Image</label>
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
 
                                 <div className='flex mx-auto'>

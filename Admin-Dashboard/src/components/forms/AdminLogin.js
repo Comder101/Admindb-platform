@@ -12,7 +12,7 @@ export default function AdminLogin({ update, login }) {
     const [cred, setcred] = useState(null)
 
     const getCred=async()=>{
-        const response = await fetch(`https://admindashb.onrender.com/api/adminlog/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/adminlog/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

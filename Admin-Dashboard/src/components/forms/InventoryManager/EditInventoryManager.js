@@ -69,9 +69,9 @@ export default function EditInventoryManager() {
         formData.append('address', values.address);
         formData.append('state', values.state);
         formData.append('agentimage', agentimage);
+        formData.append('orderId', "0");
 
-
-        axios.put(`https://admindashb.onrender.com/api/invman/${oldobj.id}`, formData)
+        axios.put(`https://adminz.onrender.com/api/invman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
             })

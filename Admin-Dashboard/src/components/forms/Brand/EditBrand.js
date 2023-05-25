@@ -24,7 +24,7 @@ export default function EditBrand() {
     const [vendorarray, setvendorarray] = useState([])
 
     const getVendors = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/vendor/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/vendor/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function EditBrand() {
     const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/brand/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export default function EditBrand() {
         }
         else {
             console.log(obj.oldbrand)
-            axios.put(`https://admindashb.onrender.com/api/brand/${obj.oldbrand}`, {
+            axios.put(`https://adminz.onrender.com/api/brand/${obj.oldbrand}`, {
                 bname: obj.newbrand,
                 vendors: obj.vendorname
             })

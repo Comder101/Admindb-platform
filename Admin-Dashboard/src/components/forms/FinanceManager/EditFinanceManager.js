@@ -69,7 +69,7 @@ export default function EditFinanceanager() {
         formData.append('agentimage', agentimage);
 
 
-        axios.put(`https://admindashb.onrender.com/api/finman/${oldobj.id}`, formData)
+        axios.put(`https://adminz.onrender.com/api/finman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
             })

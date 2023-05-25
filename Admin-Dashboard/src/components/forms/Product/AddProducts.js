@@ -27,7 +27,7 @@ export default function AddProducts() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export default function AddProducts() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function AddProducts() {
     const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/brand/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default function AddProducts() {
     const [uomarray, setuomarray] = useState([])
 
     const getUomArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/uom/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export default function AddProducts() {
     ])
 
     const getOfferArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/offer/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/offer/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -137,9 +137,9 @@ export default function AddProducts() {
         formData.append('uom', values.uom);
         formData.append('offer', values.offer);
         formData.append('image', image);
-        formData.append('quantity', 10);
+        formData.append('quantity', 0);
 
-        axios.post(`https://admindashb.onrender.com/api/product/`, formData)
+        axios.post(`https://adminz.onrender.com/api/product/`, formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Product Added Successfully", "success")
@@ -169,7 +169,7 @@ export default function AddProducts() {
 
     }, [])
 
-    // let m = [{}];
+    
     const [subcat, setsubcat] = useState([]);
 
     const nestedChange = (e) => {

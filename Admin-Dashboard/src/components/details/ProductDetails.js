@@ -17,7 +17,7 @@ const ProductDetails = () => {
 
   // getproducts api
   const getProducts = async () => {
-    const response = await fetch(`https://admindashb.onrender.com/api/product/`, {
+    const response = await fetch(`https://adminz.onrender.com/api/product/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://admindashb.onrender.com/api/product/${id}`)
+    axios.delete(`https://adminz.onrender.com/api/product/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
@@ -42,7 +42,7 @@ const ProductDetails = () => {
 
   const [catarray, setcatarray] = React.useState([]);
   const getCatArray = async () => {
-    const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
+    const response = await fetch(`https://adminz.onrender.com/api/category/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

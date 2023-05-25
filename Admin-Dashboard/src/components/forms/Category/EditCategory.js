@@ -26,7 +26,7 @@ export default function EditCategory() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,6 +34,13 @@ export default function EditCategory() {
         });
         const json = await response.json();
         setcatarray(json);
+    }
+
+    const [image, setimage] = useState(null);
+
+    const onImageChange = (e) => {
+        console.log(e.target.files);
+        setimage(e.target.files[0]);
     }
 
 
@@ -48,11 +55,13 @@ export default function EditCategory() {
         }
         else {
             catobj.color === "" ? catobj.color = "#000000" : catobj.color = catobj.color;
-            axios.post(`https://admindashb.onrender.com/api/category/2`, {
-                category: "appleupdate",
-                color: "#11111",
-                allowed: "true"
-            })
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('category', catobj.newcategory);
+            formData.append('color', catobj.color);
+            formData.append('allowed', isToggled);
+            console.log(formData);
+            axios.post(`https://adminz.onrender.com/api/category/${catobj.category}`,formData )
                 .then((response) => {
                     console.log(response);
                     showAlert("Category Updated Successfully", "success")
@@ -122,6 +131,12 @@ export default function EditCategory() {
                                         <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
                                     </div>
                                 </div>
+
+                                <div className='flex flex-col py-2'>
+                                    <label>Upload Category Image</label>
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
+                                </div>
+
                                 <div className='flex mx-auto'>
 
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>

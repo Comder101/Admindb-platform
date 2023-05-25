@@ -22,11 +22,18 @@ export default function EditSubCategory() {
         }, 2000);
     }
 
+    const [image, setimage] = useState(null);
+
+    const onImageChange = (e) => {
+        console.log(e.target.files);
+        setimage(e.target.files[0]);
+    }
+
 
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +46,7 @@ export default function EditSubCategory() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,12 +76,14 @@ export default function EditSubCategory() {
         else {
             obj.color === "" ? obj.color = "#000000" : obj.color = obj.color;
             // put req
-            axios.put(`https://admindashb.onrender.com/api/subcategory/${m.id}`, {
-                category: obj.category,
-                subcategory: obj.subcategory,
-                color: obj.color,
-                allowed: isToggled
-            })
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('category', obj.category);
+            formData.append('subcategory', obj.subcategory);
+            formData.append('color', obj.color);
+            formData.append('allowed', isToggled);
+
+            axios.put(`https://adminz.onrender.com/api/subcategory/${m.id}`, formData)
                 .then(res => {
                     console.log(res.data);
                     setobj({ category: '', updatedsubcategory: '', subcategory: '', color: '' });
@@ -163,6 +172,11 @@ export default function EditSubCategory() {
                                         <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
 
                                     </div>
+                                </div>
+
+                                <div className='flex flex-col py-2'>
+                                    <label>Upload Sub-Category Image</label>
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
                                 <div className='flex mx-auto mt-2'>
 

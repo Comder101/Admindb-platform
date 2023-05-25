@@ -17,7 +17,7 @@ const CustomerDetails = () => {
 
   // getcustomer api
   const getCustomers = async () => {
-    const response = await fetch(`https://admindashb.onrender.com/api/customer/`, {
+    const response = await fetch(`https://adminz.onrender.com/api/customer/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const CustomerDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://admindashb.onrender.com/api/customer/${id}`)
+    axios.delete(`https://adminz.onrender.com/api/customer/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');

@@ -31,7 +31,7 @@ export default function AddSubcategory() {
     ])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,6 +50,12 @@ export default function AddSubcategory() {
 
     const [isToggled, setisToggled] = useState(false)
 
+    const [image, setimage] = useState(null);
+
+    const onImageChange = (e) => {
+        console.log(e.target.files);
+        setimage(e.target.files[0]);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,12 +67,14 @@ export default function AddSubcategory() {
         else {
 
             obj.color === "" ? obj.color = "#000000" : obj.color = obj.color;
-            axios.post("https://admindashb.onrender.com/api/subcategory/", {
-                category: obj.category,
-                subcategory: obj.subcategory,
-                color: obj.color,
-                allowed: isToggled
-            })
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('category', obj.category);
+            formData.append('subcategory', obj.subcategory);
+            formData.append('color', obj.color);
+            formData.append('allowed', isToggled);
+            console.log(formData);
+            axios.post("https://adminz.onrender.com/api/subcategory/",formData)
                 .then((response) => {
                     console.log(response);
                     showAlert("Subcategroy Added Successfully", "success")
@@ -129,10 +137,13 @@ export default function AddSubcategory() {
                                         <label className='py-1 mr-2 font-bold'>Product Allowed : </label>
                                     </div>
                                     <div className='flex-col justify-center'>
-                                        {/* <input required value={obj.productcatallowed} type="" name="productcatallowed" id="productcatallowed" /> */}
                                         <Switch isToggled={isToggled} onToggle={() => setisToggled(!isToggled)} />
-
                                     </div>
+                                </div>
+
+                                <div className='flex flex-col py-2'>
+                                    <label>Upload Sub-Category Image</label>
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
                                 <div className='flex mx-auto mt-2'>
 

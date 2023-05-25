@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from "react";
-import { useEffect } from 'react';
 import '../../../App.css';
 import Navbar from '../../Navbar';
 import axios from 'axios';
@@ -28,25 +27,11 @@ export default function AddDeliveryAgent() {
         }, 2000);
     }
 
-    const [catarray, setcatarray] = useState([])
-
-    const getCatArray = async () => {
-        const response = await fetch(`https://admindashb.onrender.com/api/category/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        const json = await response.json();
-        setcatarray(json);
-    }
-
     const initialValues = {
         firstname: '',
         lastname: '',
         email: '',
         contact: '',
-        orderId: '',
         state: '',
         city: '',
         address: '',
@@ -80,14 +65,14 @@ export default function AddDeliveryAgent() {
         formData.append('lastname', values.lastname);
         formData.append('email', values.email);
         formData.append('contact', values.contact);
-        formData.append('orderId', values.orderId);
         formData.append('city', values.city);
         formData.append('address', values.address);
         formData.append('state', values.state);
         formData.append('agentimage', agentimage);
+        formData.append('orderId', "0");
         console.log("formdata : \n" + formData);
 
-        axios.post("https://admindashb.onrender.com/api/delivpar/", formData)
+        axios.post("https://adminz.onrender.com/api/delivpar/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Delivery Agent Added Successfully", "success")
@@ -102,16 +87,11 @@ export default function AddDeliveryAgent() {
         values.lastname = '';
         values.email = '';
         values.contact = '';
-        values.orderId = '';
         values.city = '';
         values.address = '';
         values.state = '';
         setagentimage(null);
     }
-
-    useEffect(() => {
-        getCatArray();
-    }, [])
 
     const nestedChange = (e) => {
         handleChange(e);
@@ -164,19 +144,6 @@ export default function AddDeliveryAgent() {
                                     <input value={values.contact} required className='mt-1 border p-2 rounded-md' type="text" name='contact' placeholder='Enter Contact Number' onBlur={handleBlur} onChange={handleChange} />
                                     {errors.contact && touched.contact ? (
                                         <p className="form-error">{errors.contact}</p>
-                                    ) : null}
-                                </div>
-
-                                <div>
-                                    <label>Order ID</label><br />
-                                    <select required value={values.orderId} className='mt-1 border px-2 py-2 w-full rounded-md' name="category" onBlur={handleBlur} onChange={nestedChange} >
-                                        <option value='select'>select</option>
-                                        {catarray.map((cat) => (
-                                            <option key={cat.id} value={cat.id}>{cat.orderId}</option>
-                                        ))}
-                                    </select>
-                                    {errors.orderId && touched.orderId ? (
-                                        <p className="form-error">{errors.orderId}</p>
                                     ) : null}
                                 </div>
 
