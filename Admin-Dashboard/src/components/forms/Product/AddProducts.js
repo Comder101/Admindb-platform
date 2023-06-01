@@ -239,7 +239,7 @@ export default function AddProducts() {
                                 </div>
                                 <div className='my-2'>
                                     <label>Brand</label><br />
-                                    <select required value={values.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onBlur={handleBlur} onChange={handleChange} >
+                                    <select className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onBlur={handleBlur} onChange={handleChange} >
                                         <option value='select'>select</option>
                                         {brandarray.map((b) => (
                                             <option key={b.id} value={b.bname}>{b.bname}</option>
