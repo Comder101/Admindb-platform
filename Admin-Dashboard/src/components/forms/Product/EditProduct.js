@@ -32,7 +32,7 @@ export default function EditProduct() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export default function EditProduct() {
     const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/brand/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default function EditProduct() {
     const [uomarray, setuomarray] = useState([])
 
     const getUomArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/uom/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function EditProduct() {
     ])
 
     const getOfferArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/offer/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/offer/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ export default function EditProduct() {
         formData.append('image', image);
         formData.append('quantity', 0);
 
-        axios.put(`https://adminz.onrender.com/api/product/${oldobj.id}`, formData)
+        axios.put(`https://adminlm.onrender.com/api/product/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
             })

@@ -48,7 +48,7 @@ export default function AddCategory() {
             formData.append('color', catobj.color);
             formData.append('allowed', isToggled);
             console.log(formData);
-            axios.post("https://adminz.onrender.com/api/category/", formData)
+            axios.post("https://adminlm.onrender.com/api/category/", formData)
                 .then((response) => {
                     showAlert("Category Added Successfully", "success")
                     console.log(response);

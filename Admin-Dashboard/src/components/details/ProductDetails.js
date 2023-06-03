@@ -17,7 +17,7 @@ const ProductDetails = () => {
 
   // getproducts api
   const getProducts = async () => {
-    const response = await fetch(`https://adminz.onrender.com/api/product/`, {
+    const response = await fetch(`https://adminlm.onrender.com/api/product/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://adminz.onrender.com/api/product/${id}`)
+    axios.delete(`https://adminlm.onrender.com/product/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');

@@ -70,7 +70,7 @@ export default function EditCustomer() {
         formData.append('agentimage', agentimage);
 
 
-        axios.put(`https://adminz.onrender.com/api/customer/${oldobj.id}`, formData)
+        axios.put(`https://adminlm.onrender.com/api/customer/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
             })

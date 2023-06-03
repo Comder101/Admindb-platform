@@ -139,7 +139,7 @@ export default function AddProducts() {
         formData.append('image', image);
         formData.append('quantity', 0);
 
-        axios.post(`https://adminz.onrender.com/api/product/`, formData)
+        axios.post(`https://adminlm.onrender.com/api/product/`, formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Product Added Successfully", "success")
@@ -239,7 +239,7 @@ export default function AddProducts() {
                                 </div>
                                 <div className='my-2'>
                                     <label>Brand</label><br />
-                                    <select className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onBlur={handleBlur} onChange={handleChange} >
+                                    <select value={values.brand} className='mt-1 border px-2 py-2 w-full rounded-md' name="brand" onBlur={handleBlur} onChange={handleChange} >
                                         <option value='select'>select</option>
                                         {brandarray.map((b) => (
                                             <option key={b.id} value={b.bname}>{b.bname}</option>

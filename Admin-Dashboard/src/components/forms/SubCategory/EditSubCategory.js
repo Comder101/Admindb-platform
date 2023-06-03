@@ -33,7 +33,7 @@ export default function EditSubCategory() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function EditSubCategory() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

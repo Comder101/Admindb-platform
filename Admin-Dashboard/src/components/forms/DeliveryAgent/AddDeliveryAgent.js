@@ -72,7 +72,7 @@ export default function AddDeliveryAgent() {
         formData.append('orderId', "0");
         console.log("formdata : \n" + formData);
 
-        axios.post("https://adminz.onrender.com/api/delivpar/", formData)
+        axios.post("https://adminlm.onrender.com/api/delivpar/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Delivery Agent Added Successfully", "success")

@@ -73,7 +73,7 @@ export default function AddVendor() {
         formData.append('state', values.state);
         formData.append('agentimage', agentimage);
 
-        axios.post("https://adminz.onrender.com/api/vendor/", formData)
+        axios.post("https://adminlm.onrender.com/api/vendor/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Vendor Added Successfully", "success")

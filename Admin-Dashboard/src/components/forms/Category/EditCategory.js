@@ -26,7 +26,7 @@ export default function EditCategory() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://adminz.onrender.com/api/category/`, {
+        const response = await fetch(`https://adminlm.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function EditCategory() {
             formData.append('color', catobj.color);
             formData.append('allowed', isToggled);
             console.log(formData);
-            axios.post(`https://adminz.onrender.com/api/category/${catobj.category}`,formData )
+            axios.post(`https://adminlm.onrender.com/api/category/${catobj.category}`,formData )
                 .then((response) => {
                     console.log(response);
                     showAlert("Category Updated Successfully", "success")

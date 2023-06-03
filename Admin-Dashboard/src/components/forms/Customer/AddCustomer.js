@@ -73,7 +73,7 @@ export default function AddCustomer() {
         formData.append('agentimage', agentimage);
         console.log("formdata : \n" + formData);
 
-        axios.post("https://adminz.onrender.com/api/customer/", formData)
+        axios.post("https://adminlm.onrender.com/api/customer/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Customer Added Successfully", "success")

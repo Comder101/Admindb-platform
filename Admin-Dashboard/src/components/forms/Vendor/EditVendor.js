@@ -71,7 +71,7 @@ export default function EditVendor() {
         formData.append('agentimage', agentimage);
 
 
-        axios.put(`https://adminz.onrender.com/api/vendor/${oldobj.id}`, formData)
+        axios.put(`https://adminlm.onrender.com/api/vendor/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
             })
