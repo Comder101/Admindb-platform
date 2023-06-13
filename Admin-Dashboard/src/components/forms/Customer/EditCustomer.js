@@ -49,9 +49,13 @@ export default function EditCustomer() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                handlereq();
-                action.resetForm();
-                navigate('/dashboard/viewcustomers');
+                if (agentimage != null) {
+                    action.resetForm();
+                    handlereq();
+                }
+                else {
+                    alert("Please Upload an Image")
+                }
                 setagentimage(null);
             },
         });
@@ -73,6 +77,7 @@ export default function EditCustomer() {
         axios.put(`https://adminlm.onrender.com/api/customer/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
+                navigate('/dashboard/viewcustomers');
             })
             .catch((error) => console.log("Error : \n" + error))
     }

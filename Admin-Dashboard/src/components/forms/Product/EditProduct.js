@@ -115,10 +115,13 @@ export default function EditProduct() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                action.resetForm();
-                navigate('/dashboard/viewproducts');
-                setimage(null);
-                handlereq();
+                if(image!=null){
+                    action.resetForm();
+                    handlereq();
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
             },
         });
 
@@ -138,6 +141,8 @@ export default function EditProduct() {
         axios.put(`https://adminlm.onrender.com/api/product/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
+                navigate('/dashboard/viewproducts');
+
             })
             .catch((error) => console.log("Error : \n" + error))
     }

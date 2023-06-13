@@ -49,10 +49,13 @@ export default function EditDeliveryAgent() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                handlereq();
-                action.resetForm();
-                navigate('/dashboard/viewdeliveryagents');
-                setagentimage(null);
+                if(agentimage!=null){
+                    handlereq();    
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
+               
             },
         });
 
@@ -71,6 +74,7 @@ export default function EditDeliveryAgent() {
         axios.put(`https://adminlm.onrender.com/api/delivpar/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
+                navigate('/dashboard/viewdeliveryagents');
             })
             .catch((error) => console.log("Error : \n" + error))
     }

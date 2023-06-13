@@ -120,9 +120,13 @@ export default function AddProducts() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                action.resetForm();
-                setimage(null);
-                handlereq();
+                if(image!=null){
+                    action.resetForm();
+                    handlereq();
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
             },
         });
 

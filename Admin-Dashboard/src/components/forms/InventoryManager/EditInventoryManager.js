@@ -51,9 +51,13 @@ export default function EditInventoryManager() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                handlereq();
-                action.resetForm();
-                navigate('/dashboard/viewinventorymanagers');
+                if(agentimage!=null){
+                    action.resetForm();
+                    handlereq();
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
                 setagentimage(null);
             },
         });
@@ -74,6 +78,7 @@ export default function EditInventoryManager() {
         axios.put(`https://adminlm.onrender.com/api/invman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
+                navigate('/dashboard/viewinventorymanagers');
             })
             .catch((error) => console.log("Error : \n" + error))
     }

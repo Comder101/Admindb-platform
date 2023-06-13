@@ -49,10 +49,13 @@ export default function EditFinanceanager() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                handlereq();
-                action.resetForm();
-                navigate('/dashboard/viewfinancemanagers');
-                setagentimage(null);
+                if(agentimage!=null){
+                    action.resetForm();
+                    handlereq();
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
             },
         });
 
@@ -72,6 +75,7 @@ export default function EditFinanceanager() {
         axios.put(`https://adminlm.onrender.com/api/finman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
+                navigate('/dashboard/viewfinancemanagers');
             })
             .catch((error) => console.log("Error : \n" + error))
     }

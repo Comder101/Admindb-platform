@@ -46,8 +46,13 @@ export default function AddDeliveryAgent() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                action.resetForm();
-                handlereq();
+                if(agentimage!=null){
+                    action.resetForm();
+                    handlereq();
+                }
+                else{
+                    alert("Please Upload an Image")
+                }
             },
         });
 
