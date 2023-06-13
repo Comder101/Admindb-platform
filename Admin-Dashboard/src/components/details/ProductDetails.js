@@ -42,7 +42,7 @@ const ProductDetails = () => {
 
   const [catarray, setcatarray] = React.useState([]);
   const getCatArray = async () => {
-    const response = await fetch(`https://adminz.onrender.com/api/category/`, {
+    const response = await fetch(`https://adminlm.onrender.com/api/category/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

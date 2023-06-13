@@ -5,7 +5,7 @@ import Navbar from '../../Navbar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from "formik";
-import { signUpSchema } from '../Schemas';
+import { updateroleschema } from '../Schemas';
 
 
 
@@ -45,7 +45,7 @@ export default function EditInventoryManager() {
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
-            validationSchema: signUpSchema,
+            validationSchema: updateroleschema,
             onSubmit: (values, action) => {
                 console.log(
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",

@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
-import { signUpSchema } from '../Schemas';
+import { updateroleschema } from '../Schemas';
 
 
 
@@ -37,13 +37,14 @@ export default function EditDeliveryAgent() {
         contact: oldobj.contact,
         city: oldobj.city,
         address: oldobj.address,
-        state: oldobj.state
+        state: oldobj.state,
+        agentimage: oldobj.agentimage
     }
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
-            validationSchema: signUpSchema,
+            validationSchema: updateroleschema,
             onSubmit: (values, action) => {
                 console.log(
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",

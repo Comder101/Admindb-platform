@@ -24,6 +24,27 @@ export const signUpSchema = Yup.object({
 
 });
 
+
+
+export const updateroleschema = Yup.object({
+    firstname: Yup.string().required("Please enter your firstname").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ").min(2, "Too Short").max(40, "Too Long"),
+    lastname: Yup.string().required("Please enter your lastname").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ").min(2, "Too Short").max(40, "Too Long"),
+    email: Yup.string().email().required("Please enter your email"),
+    contact: Yup.string()
+        .required("Please enter your phone number")
+        .matches(phoneRegExp, 'Phone number is not valid')
+        .min(10, "too short")
+        .max(10, "too long"),
+    state: Yup.string()
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
+        .min(2, "Too Short").max(25, "Too Long"),
+    city: Yup.string()
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
+        .min(2, "Too Short").max(25, "Too Long"),
+    address: Yup.string().min(2, "Too Short").max(125, "Too Long").required("Please enter your address"),
+
+});
+
 export const CustomerSchema = Yup.object({
     firstname: Yup.string().required("Please enter your firstname").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ").min(2, "Too Short").max(40, "Too Long"),
     lastname: Yup.string().required("Please enter your lastname").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ").min(2, "Too Short").max(40, "Too Long"),

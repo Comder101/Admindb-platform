@@ -5,6 +5,7 @@ import Navbar from '../../Navbar';
 import axios from 'axios';
 import Switch from '../../Switch';
 import Alert from '../../Alert';
+import { useFormik } from "formik";
 
 export default function AddCategory() {
 
@@ -26,6 +27,27 @@ export default function AddCategory() {
         console.log(e.target.files);
         setimage(e.target.files[0]);
     }
+
+    // const initialValues = {
+    //     category:"",
+    //     color:"",
+    //     allowed:false,
+    //     image:null
+    // }
+
+    // const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    //     useFormik({
+    //         initialValues,
+    //         validationSchema: signUpSchema,
+    //         onSubmit: (values, action) => {
+    //             console.log(
+    //                 "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
+    //                 values
+    //             );
+    //             action.resetForm();
+    //             handlereq();
+    //         },
+    //     });
 
 
     const [catobj, setcatobj] = useState({ category: '', color: '' });
@@ -61,6 +83,7 @@ export default function AddCategory() {
     const onDiscard = (e) => {
         e.preventDefault();
         setcatobj({ category: '', color: '' });
+        setimage(null)
     }
 
     const onChange = (e) => {
@@ -105,12 +128,12 @@ export default function AddCategory() {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Upload Category Image</label>
-                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
+                                    <input required value={image} className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
 
                                 <div className='flex mx-auto'>
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onSubmit={handleSubmit}>SAVE</button>
-                                    <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={onDiscard}>DISCARD</button>
+                                    <button type='reset' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={onDiscard} >DISCARD</button>
                                 </div>
                             </form>
                         </div>

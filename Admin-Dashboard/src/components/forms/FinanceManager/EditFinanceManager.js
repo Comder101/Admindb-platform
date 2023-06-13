@@ -6,7 +6,7 @@ import Navbar from '../../Navbar';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
-import { signUpSchema } from '../Schemas';
+import { updateroleschema } from '../Schemas';
 
 
 export default function EditFinanceanager() {
@@ -43,7 +43,7 @@ export default function EditFinanceanager() {
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
-            validationSchema: signUpSchema,
+            validationSchema: updateroleschema,
             onSubmit: (values, action) => {
                 console.log(
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",

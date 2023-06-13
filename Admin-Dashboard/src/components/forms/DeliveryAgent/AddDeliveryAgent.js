@@ -60,6 +60,7 @@ export default function AddDeliveryAgent() {
 
 
     const handlereq = () => {
+        console.log(values.img);
         const formData = new FormData();
         formData.append('firstname', values.firstname);
         formData.append('lastname', values.lastname);
