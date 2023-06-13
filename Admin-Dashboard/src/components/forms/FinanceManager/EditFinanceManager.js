@@ -175,6 +175,9 @@ export default function EditFinanceanager() {
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>
                                     <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={() => navigate('/dashboard/viewfinancemanagers')}>DISCARD</button>
                                 </div>
+                                <div>
+                                    <h2 className='pt-2 pb-0 text-center text-red-500'>* Fill all fields in the Form to Update the Details</h2>
+                                </div>
                             </form>
                         </div>
                     </div>

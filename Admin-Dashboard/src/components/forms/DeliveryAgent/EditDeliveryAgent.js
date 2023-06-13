@@ -38,7 +38,6 @@ export default function EditDeliveryAgent() {
         city: oldobj.city,
         address: oldobj.address,
         state: oldobj.state,
-        agentimage: oldobj.agentimage
     }
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -58,7 +57,6 @@ export default function EditDeliveryAgent() {
         });
 
     const handlereq = (e) => {
-
         const formData = new FormData();
         formData.append('firstname', values.firstname);
         formData.append('lastname', values.lastname);
@@ -175,6 +173,9 @@ export default function EditDeliveryAgent() {
 
                                     <button type='submit' className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-tailprimary text-black' onClick={handleSubmit}>SAVE</button>
                                     <button className='m-2 font-poppins font-bold border w-full mt-2 mb-2 rounded-md py-2 bg-tailtertiary3 hover:bg-red-600 text-black' onClick={() => navigate('/dashboard/viewdeliveryagents')}>DISCARD</button>
+                                </div>
+                                <div>
+                                    <h2 className='pt-2 pb-0 text-center text-red-500'>* Fill all fields in the Form to Update the Details</h2>
                                 </div>
                             </form>
                         </div>
