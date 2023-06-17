@@ -177,5 +177,9 @@ class adminl(models.Model):
     #to save the data
     def register(self):
         self.save()
+        
+class Update(models.Model):
+    quantity= models.IntegerField(default=10)
+
 
 # # Create your models here.

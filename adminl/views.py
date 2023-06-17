@@ -203,8 +203,9 @@ def prod_list(request):
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['PUT', 'DELETE','POST'])
+    
+    
+@api_view(['PUT', 'DELETE','POST','PATCH'])
 def prod_detail(request, pk):
     try:
         prod= Product.objects.get(pk=pk)
@@ -220,7 +221,19 @@ def prod_detail(request, pk):
 
     elif request.method == 'DELETE':
         prod.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)    
+        return Response(status=status.HTTP_204_NO_CONTENT) 
+      
+    elif request.method == 'PATCH':
+        serializer = UpdateSerializer(prod, data=request.data,context={'request': request})
+
+        if serializer.is_valid():
+            
+            prod.quantity = serializer.validated_data['quantity']
+            prod.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+ 
     
 @api_view(['GET', 'POST'])
 def categ_list(request):

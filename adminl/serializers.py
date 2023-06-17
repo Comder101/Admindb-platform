@@ -58,4 +58,8 @@ class AdminlSerializer(serializers.ModelSerializer):
         model = adminl
         fields = '__all__'
 
-
+class UpdateSerializer(serializers.ModelSerializer):
+    quantity= serializers.IntegerField(default=10)
+    class Meta:
+        model = Product
+        field= ['quantity']
