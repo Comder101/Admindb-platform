@@ -7,6 +7,22 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 # from .forms import Prodform
 
+
+from rest_framework import generics
+
+@api_view(['PATCH'])
+def update_product(request, id):
+    try:
+        product = Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProductsSerializer(product, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 def index(request):
     return render(request,'index.html')
 

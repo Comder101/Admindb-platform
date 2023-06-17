@@ -20,6 +20,7 @@ from django.views.generic.base import TemplateView
 from django.conf import settings  
 from django.urls import path, include 
 from django.conf.urls.static import static 
+from adminl.views import *
 
 
 from django.conf import settings  
@@ -35,7 +36,7 @@ urlpatterns = [
     re_path(r'^api/customer/$', views.custm_list),
     re_path(r'^api/customer/([0-9])$', views.custm_detail),
     path('manifest.json', TemplateView.as_view(template_name='manifest.json', content_type='application/json'), name='manifest.json'),
-
+    re_path(r'^api/stock/([0-9])$', views.update_product),
     re_path(r'^api/product/$', views.prod_list),
     re_path(r'^api/product/([0-9])$', views.prod_detail),
 
