@@ -64,7 +64,8 @@ export default function EditBrand() {
         }
         else {
             console.log(obj.oldbrand)
-            axios.put(`https://adminz.onrender.com/api/brand/${obj.oldbrand}`, {
+            
+            axios.put(`https://adminlm.onrender.com/api/brand/${obj.oldbrand}`, {
                 bname: obj.newbrand,
                 vendors: obj.vendorname
             })

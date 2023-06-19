@@ -31,7 +31,8 @@ const ProductDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://adminlm.onrender.com/product/${id}`)
+    console.log(id);
+    axios.delete(`https://adminlm.onrender.com/api/product/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');
@@ -50,6 +51,7 @@ const ProductDetails = () => {
     });
     const json = await response.json();
     setcatarray(json);
+    // console.log(json)
   }
 
 

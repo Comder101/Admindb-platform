@@ -152,7 +152,7 @@ export default function AddInventoryManager() {
                                 </div>
 
                                 <div className='flex flex-col py-2'>
-                                    <label>Upload Delivery Agent Image</label>
+                                    <label>Upload Image</label>
                                     <input required className='mt-1 border p-2 rounded-md' type="file" name="agentimage" onChange={onImageChange} />
                                 </div>
 

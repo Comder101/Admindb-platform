@@ -61,7 +61,7 @@ export default function EditCategory() {
             formData.append('color', catobj.color);
             formData.append('allowed', isToggled);
             console.log(formData);
-            axios.post(`https://adminlm.onrender.com/api/category/${catobj.category}`,formData )
+            axios.put(`https://adminlm.onrender.com/api/category/${catobj.category}`,formData )
                 .then((response) => {
                     console.log(response);
                     showAlert("Category Updated Successfully", "success")

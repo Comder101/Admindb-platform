@@ -83,7 +83,7 @@ export default function EditSubCategory() {
             formData.append('color', obj.color);
             formData.append('allowed', isToggled);
 
-            axios.put(`https://adminz.onrender.com/api/subcategory/${m.id}`, formData)
+            axios.put(`https://adminlm.onrender.com/api/subcategory/${m.id}`, formData)
                 .then(res => {
                     console.log(res.data);
                     setobj({ category: '', updatedsubcategory: '', subcategory: '', color: '' });
