@@ -41,7 +41,7 @@ urlpatterns = [
     re_path(r'^api/product/([0-9])$', views.prod_detail),
    
     re_path(r'^api/category/$', views.categ_list),
-    re_path(r'^api/category/([0-9])$', CategUpAPIView.as_view()),
+    re_path(r'^api/category/<int:id>/', CategUpAPIView.as_view()),
 
     re_path(r'^api/subcategory/$', views.subcateg_list),
     re_path(r'^api/subcategory/([0-9])$', views.subcateg_detail),
