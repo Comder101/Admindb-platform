@@ -29,7 +29,7 @@ def index(request):
 class CategUpAPIView(UpdateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    lookup_field = 'id' 
+   
 
 
 @api_view(['GET', 'POST'])
