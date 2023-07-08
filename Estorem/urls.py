@@ -42,11 +42,12 @@ urlpatterns = [
    
     re_path(r'^api/category/$', views.categ_list),
     path('api/category/<int:id>', CategUpAPIView.as_view(), name='update'),
+    
     re_path(r'^api/subcategory/$', views.subcateg_list),
-    re_path(r'^api/subcategory/([0-9])$', views.subcateg_detail),
+    path('api/subcategory/<int:id>', SubcategUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/brand/$', views.brand_list),
-    re_path(r'^api/brand/([0-9])$', views.brand_detail),
+    path('api/brand/<int:id>', BrandUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/delivpar/$', views.deliv_list),
     re_path(r'^api/delivpar/([0-9])$', views.deliv_detail),

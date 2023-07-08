@@ -36,6 +36,16 @@ class FinUpAPIView(UpdateAPIView):
     serializer_class = FinmanSerializer
     lookup_field = 'id' 
 
+class SubcategUpAPIView(UpdateAPIView):
+    queryset = SubCategory.objects.all()
+    serializer_class = SubCategorySerializer
+    lookup_field = 'id' 
+
+class BrandUpAPIView(UpdateAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+    lookup_field = 'id' 
+
 
 @api_view(['GET', 'POST'])
 def custm_list(request):
