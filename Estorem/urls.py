@@ -39,15 +39,15 @@ urlpatterns = [
     re_path(r'^api/stock/([0-9])$', views.update_product),
     re_path(r'^api/product/$', views.prod_list),
     re_path(r'^api/product/([0-9])$', views.prod_detail),
-
+   
     re_path(r'^api/category/$', views.categ_list),
-    re_path(r'^api/category/([0-9])$', views.categ_detail),
-
+    path('api/category/<int:id>', CategUpAPIView.as_view(), name='update'),
+    
     re_path(r'^api/subcategory/$', views.subcateg_list),
-    re_path(r'^api/subcategory/([0-9])$', views.subcateg_detail),
+    path('api/subcategory/<int:id>', SubcategUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/brand/$', views.brand_list),
-    re_path(r'^api/brand/([0-9])$', views.brand_detail),
+    path('api/brand/<int:id>', BrandUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/delivpar/$', views.deliv_list),
     re_path(r'^api/delivpar/([0-9])$', views.deliv_detail),
@@ -56,7 +56,7 @@ urlpatterns = [
     re_path(r'^api/invman/([0-9])$', views.invm_detail),
 
     re_path(r'^api/finman/$', views.finman_list),
-    re_path(r'^api/finman/([0-9])$', views.finman_detail),
+    path('api/finman/<int:id>', FinUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/vendor/$', views.vendor_list),
     re_path(r'^api/vendor/([0-9])$', views.vendor_detail),

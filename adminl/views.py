@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .serializers import *
 from .models import *
-
+from rest_framework.generics import UpdateAPIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -25,6 +25,27 @@ def update_product(request, id):
 
 def index(request):
     return render(request,'index.html')
+
+class CategUpAPIView(UpdateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    lookup_field = 'id' 
+
+class FinUpAPIView(UpdateAPIView):
+    queryset = FinManager.objects.all()
+    serializer_class = FinmanSerializer
+    lookup_field = 'id' 
+
+class SubcategUpAPIView(UpdateAPIView):
+    queryset = SubCategory.objects.all()
+    serializer_class = SubCategorySerializer
+    lookup_field = 'id' 
+
+class BrandUpAPIView(UpdateAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+    lookup_field = 'id' 
+
 
 @api_view(['GET', 'POST'])
 def custm_list(request):
