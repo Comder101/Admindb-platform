@@ -31,6 +31,11 @@ class CategUpAPIView(UpdateAPIView):
     serializer_class = CategorySerializer
     lookup_field = 'id' 
 
+class FinUpAPIView(UpdateAPIView):
+    queryset = FinManager.objects.all()
+    serializer_class = FinmanSerializer
+    lookup_field = 'id' 
+
 
 @api_view(['GET', 'POST'])
 def custm_list(request):

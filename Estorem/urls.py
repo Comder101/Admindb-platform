@@ -56,6 +56,7 @@ urlpatterns = [
 
     re_path(r'^api/finman/$', views.finman_list),
     re_path(r'^api/finman/([0-9])$', views.finman_detail),
+    path('api/finman/<int:id>', FinUpAPIView.as_view(), name='update'),
 
     re_path(r'^api/vendor/$', views.vendor_list),
     re_path(r'^api/vendor/([0-9])$', views.vendor_detail),
