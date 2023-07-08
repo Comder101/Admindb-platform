@@ -64,7 +64,7 @@ export default function EditSubCategory() {
     })
     const [isToggled, setisToggled] = useState(false)
 
-
+    const [onsub, setonsub] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault();
         const m = subcatarray.find(item => item.subcategory == obj.subcategory);
@@ -76,18 +76,20 @@ export default function EditSubCategory() {
         else {
             obj.color === "" ? obj.color = "#000000" : obj.color = obj.color;
             // put req
+            console.log(obj)
             const formData = new FormData();
             formData.append('image', image);
             formData.append('category', obj.category);
-            formData.append('subcategory', obj.subcategory);
+            formData.append('subcategory', obj.updatedsubcategory);
             formData.append('color', obj.color);
             formData.append('allowed', isToggled);
 
             axios.put(`https://adminlm.onrender.com/api/subcategory/${m.id}`, formData)
                 .then(res => {
-                    console.log(res.data);
+                    console.log(res);
                     setobj({ category: '', updatedsubcategory: '', subcategory: '', color: '' });
                     showAlert('Sub-Category Updated Successfully', 'success');
+                    setonsub(!onsub);
                 }
                 )
                 .catch(err => {
@@ -121,6 +123,11 @@ export default function EditSubCategory() {
         getCatArray();
         getSubcatArray();
     }, [])
+
+    useEffect(() => {
+        getCatArray();
+        getSubcatArray();
+    }, [onsub])
 
     return (
         <>

@@ -49,11 +49,11 @@ export default function EditFinanceanager() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
-                if(agentimage!=null){
+                if (agentimage != null) {
                     action.resetForm();
                     handlereq();
                 }
-                else{
+                else {
                     alert("Please Upload an Image")
                 }
             },
@@ -71,6 +71,7 @@ export default function EditFinanceanager() {
         formData.append('state', values.state);
         formData.append('agentimage', agentimage);
 
+        console.log(oldobj.id)
 
         axios.put(`https://adminlm.onrender.com/api/finman/${oldobj.id}`, formData)
             .then((response) => {

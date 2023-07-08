@@ -48,7 +48,7 @@ export default function EditBrand() {
         setbrandarray(json);
     }
 
-
+    const [onToggle, setonToggle] = useState(false)
 
     const [obj, setobj] = useState({
         oldbrand: '',
@@ -77,6 +77,7 @@ export default function EditBrand() {
                         vendorname: '',
                         newbrand: ''
                     });
+                    setonToggle(!onToggle);
 
                 })
                 .catch((error) => console.log(error))
@@ -102,6 +103,11 @@ export default function EditBrand() {
         getVendors();
         // console.log(brandarray)
     }, [])
+
+    useEffect(() => {
+        getBrandArray();
+        getVendors();
+    }, [onToggle])
 
 
     return (

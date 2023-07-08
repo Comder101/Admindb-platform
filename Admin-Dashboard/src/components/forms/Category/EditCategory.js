@@ -43,8 +43,7 @@ export default function EditCategory() {
         setimage(e.target.files[0]);
     }
 
-
-
+    const [onsubchange, setonsubchange] = useState(false)
     const [catobj, setcatobj] = useState({ category: '', newcategory: '', color: '' });
     const [isToggled, setisToggled] = useState(false)
 
@@ -66,6 +65,7 @@ export default function EditCategory() {
                     console.log(response);
                     showAlert("Category Updated Successfully", "success")
                     setcatobj({ category: '', newcategory: '', color: '' });
+                    setonsubchange(!onsubchange);
                 })
                 .catch((error) => console.log(error))
         }
@@ -81,6 +81,10 @@ export default function EditCategory() {
         setcatobj({ ...catobj, [e.target.name]: e.target.value });
     }
 
+
+    useEffect(() => {
+        getCatArray();           
+    }, [onsubchange])
 
     useEffect(() => {
         getCatArray();

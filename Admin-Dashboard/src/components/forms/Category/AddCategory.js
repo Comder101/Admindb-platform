@@ -83,7 +83,7 @@ export default function AddCategory() {
     const onDiscard = (e) => {
         e.preventDefault();
         setcatobj({ category: '', color: '' });
-        setimage(null)
+        // setimage(null)
     }
 
     const onChange = (e) => {
@@ -128,7 +128,7 @@ export default function AddCategory() {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Upload Category Image</label>
-                                    <input required value={image} className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
+                                    <input required className='mt-1 border p-2 rounded-md' type="file" name="image" onChange={onImageChange} />
                                 </div>
 
                                 <div className='flex mx-auto'>
