@@ -23,9 +23,7 @@ class Category(models.Model):
     def get_all_categories():
         return Category.objects.all()
     
-    def __str__(self):
-        return self.name
-    
+ 
 
 class SubCategory(models.Model):
     subcategory= models.CharField(max_length=50)
@@ -38,9 +36,7 @@ class SubCategory(models.Model):
     @staticmethod
     def get_all_subcategories():
         return Category.objects.all()
-    
-    def __str__(self):
-        return self.name
+ 
     
 class Customer(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
