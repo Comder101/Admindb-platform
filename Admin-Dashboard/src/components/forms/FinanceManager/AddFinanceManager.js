@@ -40,7 +40,7 @@ export default function AddFinanceanager() {
         state: '',
     }
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit,resetForm } =
         useFormik({
             initialValues,
             validationSchema: signUpSchema,
@@ -90,6 +90,7 @@ export default function AddFinanceanager() {
 
     const onDiscard = (e) => {
         e.preventDefault();
+        resetForm();
         values.firstname = '';
         values.lastname = '';
         values.email = '';

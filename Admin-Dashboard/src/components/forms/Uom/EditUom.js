@@ -45,6 +45,7 @@ export default function EditUom() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(obj);
         if (obj.updateduom === '' || obj.uom === '' || obj.uom === 'select') {
             alert('Please fill all the fields');
         }

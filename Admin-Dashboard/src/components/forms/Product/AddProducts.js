@@ -111,7 +111,7 @@ export default function AddProducts() {
         offer: ''
     }
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit,resetForm } =
         useFormik({
             initialValues,
             validationSchema: ProductSchema,
@@ -120,6 +120,7 @@ export default function AddProducts() {
                     "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
                     values
                 );
+                
                 if(image!=null){
                     action.resetForm();
                     handlereq();
@@ -154,6 +155,7 @@ export default function AddProducts() {
 
     const onDiscard = (e) => {
         e.preventDefault();
+        resetForm();
         values.productname = '';
         values.productprice = 0;
         values.category = '';
@@ -161,7 +163,6 @@ export default function AddProducts() {
         values.brand = '';
         values.uom = '';
         values.offer = '';
-        setimage(null);
     }
 
     useEffect(() => {
