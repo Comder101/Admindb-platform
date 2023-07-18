@@ -63,7 +63,7 @@ class Vendor(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/vendors/',null=True)
+    agentimage= models.ImageField(null=True,blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
