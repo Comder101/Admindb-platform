@@ -15,7 +15,7 @@ from django.db.models import Model
 class Category(models.Model):
     allowed= models.BooleanField(default=False)
     category= models.CharField(max_length=50, default="fruits")
-    image= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/categ/',null=True)
+    image= models.ImageField(null=True,blank=True)
     color= models.CharField(max_length=10, default='', blank=True, null= True)
 
 
