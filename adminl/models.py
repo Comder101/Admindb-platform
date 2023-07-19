@@ -15,7 +15,7 @@ from django.db.models import Model
 class Category(models.Model):
     allowed= models.BooleanField(default=False)
     category= models.CharField(max_length=50, default="fruits")
-    image= models.ImageField(null=True,blank=True)
+    image= models.ImageField(upload_to='images',null=True,blank=True)
     color= models.CharField(max_length=10, default='', blank=True, null= True)
 
 
@@ -63,7 +63,7 @@ class Vendor(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(null=True,blank=True)
+    agentimage= models.ImageField(upload_to='images',null=True,blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
