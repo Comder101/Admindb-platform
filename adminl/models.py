@@ -15,7 +15,7 @@ from django.db.models import Model
 class Category(models.Model):
     allowed= models.BooleanField(default=False)
     category= models.CharField(max_length=50, default="fruits")
-    image= models.ImageField(upload_to='images',null=True,blank=True)
+    image = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     color= models.CharField(max_length=10, default='', blank=True, null= True)
 
 
@@ -28,8 +28,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     subcategory= models.CharField(max_length=50)
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
-    image= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/subcateg/',null=True)
-
+    image = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     allowed= models.BooleanField(default=False)
     color= models.CharField(max_length=10, default='', blank=True, null= True)
     
@@ -42,7 +41,7 @@ class Customer(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/customers/',null=True)
+    agentimage = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     address= models.CharField(max_length=250, default='', blank=True, null= True)
@@ -63,7 +62,7 @@ class Vendor(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='images',null=True,blank=True)
+    agentimage = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
@@ -81,7 +80,7 @@ class Invman(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/invman/',null=True)
+    agentimage = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
@@ -101,7 +100,7 @@ class DelivPart(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/delivpar/',null=True)
+    agentimage = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
@@ -121,7 +120,7 @@ class FinManager(models.Model):
     firstname = models.CharField(max_length=50,default='Kartik')
     lastname = models.CharField (max_length=50,default='Singhania')
     contact = models.CharField(max_length=10)
-    agentimage= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/finman/',null=True)
+    agentimage = models.ImageField(upload_to='uploads/images', null=True, blank=True)
     email=models.EmailField(max_length=50,default='karsingh@gmail.com')
     city = models.CharField(max_length=50,default='Koregaon')
     state = models.CharField(max_length=50, default='', blank=True, null= True)
@@ -148,7 +147,7 @@ class Product(models.Model):
     uom=models.CharField(max_length=50,default="abc")
     offer=models.CharField(max_length=10,default='20%')
     quantity= models.IntegerField(default=10)
-    image= models.ImageField(upload_to='Admin-Dashboard/build/static/uploads/products/')
+    image = models.ImageField(upload_to='uploads/images', null=True, blank=True)
 
     @staticmethod
     def get_products_by_id(ids):
