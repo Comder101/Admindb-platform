@@ -19,7 +19,7 @@ export default function EditProduct() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default function EditProduct() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export default function EditProduct() {
     const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/brand/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default function EditProduct() {
     const [uomarray, setuomarray] = useState([])
 
     const getUomArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/uom/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function EditProduct() {
     ])
 
     const getOfferArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/offer/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/offer/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

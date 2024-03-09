@@ -15,7 +15,7 @@ const InventoryDetails = () => {
   const [AllInventoryManagers, setAllInventoryManagers] = useState([]);
 
   const getInventoryManagers = async () => {
-    const response = await fetch(`https://adminpr.onrender.com/api/invman/`, {
+    const response = await fetch(`https://admindb-platf.onrender.com/api/invman/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const InventoryDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://adminpr.onrender.com/api/invman/${id}`)
+    axios.delete(`https://admindb-platf.onrender.com/api/invman/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');

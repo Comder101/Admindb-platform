@@ -17,7 +17,7 @@ const FinanceDetails = () => {
 
   // getFinanceManager api
   const getFinanceManager = async () => {
-    const response = await fetch(`https://adminpr.onrender.com/api/finman/`, {
+    const response = await fetch(`https://admindb-platf.onrender.com/api/finman/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const FinanceDetails = () => {
 
   const onDelete = (id, event) => {
     event.preventDefault();
-    axios.delete(`https://adminpr.onrender.com/api/finman/${id}`)
+    axios.delete(`https://admindb-platf.onrender.com/api/finman/${id}`)
       .then((response) => {
         console.log(response);
         console.log('\ndeleted');

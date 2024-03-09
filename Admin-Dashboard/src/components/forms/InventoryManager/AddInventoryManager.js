@@ -77,7 +77,7 @@ export default function AddInventoryManager() {
         formData.append('state', values.state);
         formData.append('agentimage', agentimage);
         formData.append('orderId', "0");
-        axios.post("https://adminpr.onrender.com/api/invman/", formData)
+        axios.post("https://admindb-platf.onrender.com/api/invman/", formData)
             .then((response) => {
                 console.log(response);
                 showAlert("Inventory Manager Added Successfully", "success")

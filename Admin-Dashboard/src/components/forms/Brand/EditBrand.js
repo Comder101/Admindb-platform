@@ -24,7 +24,7 @@ export default function EditBrand() {
     const [vendorarray, setvendorarray] = useState([])
 
     const getVendors = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/vendor/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/vendor/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function EditBrand() {
     const [brandarray, setbrandarray] = useState([])
 
     const getBrandArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/brand/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/brand/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default function EditBrand() {
         else {
             console.log(obj.oldbrand)
             
-            axios.put(`https://adminpr.onrender.com/api/brand/${obj.oldbrand}`, {
+            axios.put(`https://admindb-platf.onrender.com/api/brand/${obj.oldbrand}`, {
                 bname: obj.newbrand,
                 vendors: obj.vendorname
             })

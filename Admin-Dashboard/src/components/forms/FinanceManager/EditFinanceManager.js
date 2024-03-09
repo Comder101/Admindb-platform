@@ -73,7 +73,7 @@ export default function EditFinanceanager() {
 
         console.log(oldobj.id)
 
-        axios.put(`https://adminpr.onrender.com/api/finman/${oldobj.id}`, formData)
+        axios.put(`https://admindb-platf.onrender.com/api/finman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
                 navigate('/dashboard/viewfinancemanagers');

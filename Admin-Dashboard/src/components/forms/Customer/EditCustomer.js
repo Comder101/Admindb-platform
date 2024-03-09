@@ -74,7 +74,7 @@ export default function EditCustomer() {
         formData.append('agentimage', agentimage);
 
 
-        axios.put(`https://adminpr.onrender.com/api/customer/${oldobj.id}`, formData)
+        axios.put(`https://admindb-platf.onrender.com/api/customer/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
                 navigate('/dashboard/viewcustomers');

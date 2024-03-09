@@ -33,7 +33,7 @@ export default function EditSubCategory() {
     const [catarray, setcatarray] = useState([])
 
     const getCatArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/category/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/category/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function EditSubCategory() {
     const [subcatarray, setsubcatarray] = useState([])
 
     const getSubcatArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/subcategory/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/subcategory/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function EditSubCategory() {
             formData.append('color', obj.color);
             formData.append('allowed', isToggled);
 
-            axios.put(`https://adminpr.onrender.com/api/subcategory/${m.id}`, formData)
+            axios.put(`https://admindb-platf.onrender.com/api/subcategory/${m.id}`, formData)
                 .then(res => {
                     console.log(res);
                     setobj({ category: '', updatedsubcategory: '', subcategory: '', color: '' });

@@ -33,7 +33,7 @@ export default function EditUom() {
     })
 
     const getUomArray = async () => {
-        const response = await fetch(`https://adminpr.onrender.com/api/uom/`, {
+        const response = await fetch(`https://admindb-platf.onrender.com/api/uom/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function EditUom() {
             alert('Please fill all the fields');
         }
         else {
-            axios.put(`https://adminpr.onrender.com/api/uom/${obj.uom}`, {
+            axios.put(`https://admindb-platf.onrender.com/api/uom/${obj.uom}`, {
                 name: obj.updateduom,
             })
                 .then((response) => {

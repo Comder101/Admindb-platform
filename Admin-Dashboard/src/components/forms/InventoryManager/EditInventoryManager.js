@@ -75,7 +75,7 @@ export default function EditInventoryManager() {
         formData.append('agentimage', agentimage);
         formData.append('orderId', "0");
 
-        axios.put(`https://adminpr.onrender.com/api/invman/${oldobj.id}`, formData)
+        axios.put(`https://admindb-platf.onrender.com/api/invman/${oldobj.id}`, formData)
             .then((response) => {
                 console.log(response);
                 navigate('/dashboard/viewinventorymanagers');
